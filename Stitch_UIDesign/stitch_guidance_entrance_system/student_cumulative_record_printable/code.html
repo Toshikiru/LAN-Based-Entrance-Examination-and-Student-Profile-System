@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GuidancePulse | Cumulative Student Record</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f7f9fb",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-dim": "#d8dadc",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary": "#006c49",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-tertiary-container": "#e9f0ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-secondary-container": "#00714d",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-low": "#f2f4f6",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#6cf8bb",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-surface-variant": "#434655",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#2563eb",
+                        "background": "#f7f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "outline": "#737686",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-container": "#eeefff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "tertiary-fixed": "#d3e4fe",
+                        "primary": "#004ac6",
+                        "surface-tint": "#0053db",
+                        "surface-container": "#eceef0",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary-fixed": "#002113",
+                        "tertiary-container": "#5e6e85",
+                        "tertiary": "#46566c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "container-margin": "32px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background-color: white !important; margin: 0; padding: 0; }
+            .print-container { 
+                box-shadow: none !important; 
+                border: none !important; 
+                width: 100% !important; 
+                max-width: 100% !important; 
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .page-break { page-break-before: always; }
+        }
+        .paper-texture {
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- Top Navigation Actions (Suppressed in Print) -->
+<header class="no-print fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-lg h-16 shadow-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-headline-md" data-icon="description">description</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">GuidancePulse</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="flex items-center gap-xs px-md py-sm bg-primary text-on-primary rounded-lg font-label-md hover:bg-primary-container transition-colors shadow-sm" onclick="window.print()">
+<span class="material-symbols-outlined text-[20px]" data-icon="print">print</span>
+<span>Print Record</span>
+</button>
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container-high text-on-surface rounded-lg font-label-md hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="picture_as_pdf">picture_as_pdf</span>
+<span>Export PDF</span>
+</button>
+<button class="material-symbols-outlined text-on-surface-variant p-sm hover:bg-surface-container rounded-full" data-icon="close" onclick="history.back()">close</button>
+</div>
+</header>
+<main class="pt-24 pb-xl flex justify-center px-md min-h-screen paper-texture">
+<!-- Cumulative Record Container -->
+<div class="print-container w-full max-w-[850px] bg-white shadow-xl border border-outline-variant p-xl flex flex-col gap-xl min-h-[1123px]">
+<!-- 1. Header Section -->
+<div class="flex justify-between items-start border-b-2 border-primary pb-lg">
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 bg-primary-container/10 rounded-xl flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-[40px]" data-icon="school">school</span>
+</div>
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Cumulative Student Record</h2>
+<p class="font-label-md text-on-surface-variant uppercase tracking-widest">Guidance &amp; Counseling Department</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-on-surface-variant">Date Generated</p>
+<p class="font-label-md font-bold text-on-surface">October 24, 2023</p>
+<p class="font-label-sm text-on-surface-variant mt-sm">Document ID: GP-2023-9941</p>
+</div>
+</div>
+<!-- 2. Student Information Section -->
+<section class="grid grid-cols-12 gap-lg items-center bg-surface-container-low/50 p-lg rounded-xl border border-outline-variant">
+<div class="col-span-3">
+<div class="aspect-square w-full rounded-lg overflow-hidden border-2 border-white shadow-md ring-1 ring-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional, close-up studio portrait of a young university student with a focused and friendly expression. The lighting is soft and even, typical of an official identification photo. The background is a solid, muted light gray, maintaining a minimalist and high-contrast academic aesthetic. The student is wearing a clean, dark-colored academic blazer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkJ0rfRl_W9XzDqBKyhfBv__zE4HXUVqqSuGH1_YuH2lYW34a2IpM3VSnwgH8hAXZOhMWgtbBpY40Cy-xgEUW7ZbvfYBtui_5AkfRaqKO1QntcRmGUDkd3PndVCNcrTnJN3QO4QbfpqJOQbj7QCDQElEbgwH-HPeQVf-YSfkNa82Xtmx8lE0ld-PfGnhPxo1iEz9N9VGRANwpaAcK4TpaOpD1JRHWa9u15gVMNS-Wkg5RCKe5G1n6_xA"/>
+</div>
+</div>
+<div class="col-span-9 grid grid-cols-2 gap-y-md gap-x-lg">
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase">Full Name</p>
+<p class="font-headline-md text-on-surface">Julianne Mae V. Sterling</p>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase">Student ID</p>
+<p class="font-headline-md text-on-surface">2021-00459-MN-0</p>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase">Course &amp; Major</p>
+<p class="font-body-md font-semibold text-on-surface">B.S. Applied Psychology</p>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase">Year Level</p>
+<p class="font-body-md font-semibold text-on-surface">3rd Year (Junior)</p>
+</div>
+</div>
+</section>
+<!-- 3. Academic & Personal History -->
+<section>
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="history">history</span>
+<h3 class="font-headline-md text-headline-md border-l-4 border-primary pl-md">Academic &amp; Personal History</h3>
+</div>
+<div class="grid grid-cols-2 gap-lg">
+<ul class="space-y-sm">
+<li class="flex justify-between py-xs border-b border-outline-variant/30">
+<span class="text-on-surface-variant font-label-md">Admission Type:</span>
+<span class="font-body-md font-medium">Freshman Enrollment</span>
+</li>
+<li class="flex justify-between py-xs border-b border-outline-variant/30">
+<span class="text-on-surface-variant font-label-md">Prev. Institution:</span>
+<span class="font-body-md font-medium">St. Jude Academy</span>
+</li>
+<li class="flex justify-between py-xs border-b border-outline-variant/30">
+<span class="text-on-surface-variant font-label-md">Scholarship Status:</span>
+<span class="font-body-md font-medium text-secondary">Academic Scholar</span>
+</li>
+</ul>
+<ul class="space-y-sm">
+<li class="flex justify-between py-xs border-b border-outline-variant/30">
+<span class="text-on-surface-variant font-label-md">Citizenship:</span>
+<span class="font-body-md font-medium">Filipino</span>
+</li>
+<li class="flex justify-between py-xs border-b border-outline-variant/30">
+<span class="text-on-surface-variant font-label-md">Guardian Contact:</span>
+<span class="font-body-md font-medium">+63 917 555 0123</span>
+</li>
+<li class="flex justify-between py-xs border-b border-outline-variant/30">
+<span class="text-on-surface-variant font-label-md">Home Address:</span>
+<span class="font-body-md font-medium text-right">Quezon City, PH</span>
+</li>
+</ul>
+</div>
+</section>
+<!-- 4. Examination Summary -->
+<section>
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="fact_check">fact_check</span>
+<h3 class="font-headline-md text-headline-md border-l-4 border-primary pl-md">Examination Summary</h3>
+</div>
+<div class="overflow-hidden rounded-lg border border-outline-variant">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high border-b border-outline-variant">
+<th class="px-md py-sm font-label-sm text-on-surface-variant uppercase">Exam Code</th>
+<th class="px-md py-sm font-label-sm text-on-surface-variant uppercase">Title</th>
+<th class="px-md py-sm font-label-sm text-on-surface-variant uppercase text-center">Score</th>
+<th class="px-md py-sm font-label-sm text-on-surface-variant uppercase text-center">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<tr>
+<td class="px-md py-md font-label-md text-on-surface-variant">PSY-401</td>
+<td class="px-md py-md font-body-md font-medium">Developmental Psychology Midterm</td>
+<td class="px-md py-md text-center font-body-md">94 / 100</td>
+<td class="px-md py-md text-center">
+<span class="inline-block px-sm py-xs bg-secondary/10 text-secondary text-[11px] font-bold rounded uppercase tracking-wider">Passed</span>
+</td>
+</tr>
+<tr>
+<td class="px-md py-md font-label-md text-on-surface-variant">STA-102</td>
+<td class="px-md py-md font-body-md font-medium">Advanced Statistical Methods</td>
+<td class="px-md py-md text-center font-body-md">88 / 100</td>
+<td class="px-md py-md text-center">
+<span class="inline-block px-sm py-xs bg-secondary/10 text-secondary text-[11px] font-bold rounded uppercase tracking-wider">Passed</span>
+</td>
+</tr>
+<tr>
+<td class="px-md py-md font-label-md text-on-surface-variant">THE-200</td>
+<td class="px-md py-md font-body-md font-medium">Theories of Personality Final</td>
+<td class="px-md py-md text-center font-body-md">91 / 100</td>
+<td class="px-md py-md text-center">
+<span class="inline-block px-sm py-xs bg-secondary/10 text-secondary text-[11px] font-bold rounded uppercase tracking-wider">Passed</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- 5. Assessment Summary (Personality Tests) -->
+<section class="page-break">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="psychology">psychology</span>
+<h3 class="font-headline-md text-headline-md border-l-4 border-primary pl-md">Assessment Summary</h3>
+</div>
+<div class="grid grid-cols-2 gap-lg">
+<!-- Personality Card -->
+<div class="p-md bg-surface-container rounded-lg border border-outline-variant flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<p class="font-label-sm text-primary uppercase font-bold">MBTI Assessment</p>
+<span class="font-headline-md text-primary">INTJ</span>
+</div>
+<p class="text-on-surface-variant font-label-md italic">"Architect: Imaginative and strategic thinkers, with a plan for everything."</p>
+<div class="mt-xs space-y-xs">
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[85%]"></div>
+</div>
+<p class="text-[10px] text-right text-on-surface-variant uppercase">Introversion (85%)</p>
+</div>
+</div>
+<!-- Aptitude Card -->
+<div class="p-md bg-surface-container rounded-lg border border-outline-variant flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<p class="font-label-sm text-secondary uppercase font-bold">Holland Code (RIASEC)</p>
+<span class="font-headline-md text-secondary">IAS</span>
+</div>
+<p class="text-on-surface-variant font-label-md italic">"Investigative, Artistic, and Social core competencies."</p>
+<div class="mt-xs space-y-xs">
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[92%]"></div>
+</div>
+<p class="text-[10px] text-right text-on-surface-variant uppercase">Analytical Reasoning (92%)</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Counselor Remarks -->
+<section class="flex-grow">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="rate_review">rate_review</span>
+<h3 class="font-headline-md text-headline-md border-l-4 border-primary pl-md">Counselor Remarks</h3>
+</div>
+<div class="p-lg bg-surface-container-lowest border border-outline rounded-lg min-h-[160px] relative">
+<p class="font-body-md text-on-surface leading-relaxed">
+                        The student demonstrates exceptional focus and analytical capability. Julianne has shown significant growth in leadership roles within the Psychology Society. Her academic performance remains consistently high (GWA: 1.25). 
+                        <br/><br/>
+<strong>Recommendations:</strong> Encourage participation in advanced research internships. Monitor work-life balance as the student tends to over-commit to academic projects. No significant behavioral concerns noted during the annual interview.
+                    </p>
+<div class="absolute bottom-4 right-4 text-[10px] text-on-surface-variant uppercase tracking-widest opacity-30">Confidential Document</div>
+</div>
+</section>
+<!-- 7. Signatures -->
+<section class="mt-xl grid grid-cols-2 gap-xl">
+<div class="flex flex-col items-center">
+<div class="w-full max-w-[200px] border-b border-on-surface mb-sm flex flex-col items-center relative h-12">
+<span class="material-symbols-outlined absolute -top-4 opacity-50 text-[60px] text-primary" data-icon="signature" style="font-variation-settings: 'wght' 200;">signature</span>
+</div>
+<p class="font-label-md font-bold">DR. ELENA S. ROBLES, RGC</p>
+<p class="font-label-sm text-on-surface-variant">Director, Guidance Services</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-full max-w-[200px] border-b border-on-surface mb-sm flex flex-col items-center h-12">
+<!-- Space for physical signature -->
+</div>
+<p class="font-label-md font-bold">JULIANNE MAE V. STERLING</p>
+<p class="font-label-sm text-on-surface-variant">Student (Signature over Printed Name)</p>
+</div>
+</section>
+<!-- Footer Meta -->
+<footer class="mt-auto pt-lg border-t border-outline-variant flex justify-between items-center text-[11px] text-on-surface-variant uppercase tracking-wider">
+<p>GuidancePulse Enterprise Academic Suite © 2023</p>
+<p>Verified Secure Document • Page 1 of 1</p>
+</footer>
+</div>
+</main>
+<!-- Floating Print Action for Mobile View (Visible only on UI) -->
+<button class="no-print fixed bottom-md right-md md:hidden w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform" onclick="window.print()">
+<span class="material-symbols-outlined" data-icon="print">print</span>
+</button>
+<script>
+        // Simple micro-interaction for hover states on sections
+        document.querySelectorAll('section').forEach(section => {
+            section.addEventListener('mouseenter', () => {
+                if (!window.matchMedia('print').matches) {
+                    section.classList.add('transition-all', 'duration-300');
+                }
+            });
+        });
+    </script>
+</body></html>

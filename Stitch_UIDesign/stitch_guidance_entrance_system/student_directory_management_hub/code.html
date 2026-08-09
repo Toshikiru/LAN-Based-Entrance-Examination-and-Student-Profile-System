@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Directory | GuidancePulse</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#f7f9fb",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-dim": "#d8dadc",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary": "#006c49",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-tertiary-container": "#e9f0ff",
+                    "on-primary-fixed": "#00174b",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e6e8ea",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "on-secondary-container": "#00714d",
+                    "outline-variant": "#c3c6d7",
+                    "surface-container-low": "#f2f4f6",
+                    "on-surface": "#191c1e",
+                    "inverse-surface": "#2d3133",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#6cf8bb",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "on-background": "#191c1e",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-surface-variant": "#434655",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#2563eb",
+                    "background": "#f7f9fb",
+                    "surface-variant": "#e0e3e5",
+                    "outline": "#737686",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary-container": "#eeefff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "tertiary-fixed": "#d3e4fe",
+                    "primary": "#004ac6",
+                    "surface-tint": "#0053db",
+                    "surface-container": "#eceef0",
+                    "surface-bright": "#f7f9fb",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-secondary-fixed": "#002113",
+                    "tertiary-container": "#5e6e85",
+                    "tertiary": "#46566c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "xl": "40px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "container-margin": "32px",
+                    "gutter": "20px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d8dadc;
+            border-radius: 10px;
+        }
+        .table-row-hover:hover {
+            background-color: rgba(0, 74, 198, 0.03);
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-md">
+<h1 class="text-headline-md font-headline-md font-bold text-primary">GuidancePulse</h1>
+<div class="hidden md:flex items-center bg-surface-container-low px-md py-xs rounded-lg border border-outline-variant ml-xl w-96 group focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-full placeholder-on-surface-variant/60" placeholder="Search system..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors cursor-pointer active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors cursor-pointer active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden ml-sm cursor-pointer border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a female academic administrator with a warm smile, wearing a professional navy blazer. The background is a blurred high-end university office with wooden bookshelves and soft natural morning light. The image style is sharp, clean, and corporate, using a bright and professional light-mode aesthetic consistent with GuidancePulse." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiteeOx4rRFdnJ-2_u2AScZJGMoV2nFUbhB7rQYYyWqzMy5DS0jfoZriudj9akkpZQ27FZ03YNmPieqXSt1xOnKQqXwoGk9xp_6qDD8jhjdL2xRv1eoFf8au3X4qHsG0pih4sREEDWlDCLXFs4dFfQn4r9Z5yCpxV53n13QT77aBt9EdBuYJeWhQc1lhJdwSfI2_P5LR0SJIRYCxX8trpvFesFGV2pPgeKm5EWTwpsHPk1tjjwKKXkHw"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col py-lg bg-surface-container-low border-r border-outline-variant w-[260px] z-40 mt-16">
+<div class="px-md mb-lg">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<p class="font-headline-md text-label-md text-primary font-bold leading-none">GuidancePulse</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-semibold mt-1">Academic Management</p>
+</div>
+</div>
+</div>
+<div class="flex-1 px-sm space-y-1">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary bg-primary-container/10 border-l-4 border-primary transition-all duration-200 ease-in-out font-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span>Student Directory</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md" href="#">
+<span class="material-symbols-outlined">person</span>
+<span>Student Profiles</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span>Examination History</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span>Assessments</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span>Cumulative Records</span>
+</a>
+</div>
+<div class="px-sm pt-lg mt-auto border-t border-outline-variant/30 space-y-1">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-md" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Help Center</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-error hover:bg-error-container/20 transition-all duration-200 ease-in-out font-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] pt-16 min-h-screen p-container-margin bg-surface">
+<div class="max-w-[1400px] mx-auto space-y-lg">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Student Directory</h2>
+<p class="text-body-md text-on-surface-variant mt-xs">Manage and monitor student enrollments and academic status.</p>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg flex items-center gap-sm font-label-md hover:brightness-110 active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                    Add New Student
+                </button>
+</div>
+<!-- Filter Bar Section -->
+<div class="bg-white p-md rounded-xl border border-outline-variant shadow-sm grid grid-cols-1 md:grid-cols-5 gap-md items-end">
+<div class="space-y-xs">
+<label class="text-label-sm text-on-surface-variant ml-1">Search Student</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-md py-sm rounded-lg border-outline-variant border focus:border-primary focus:ring-4 focus:ring-primary/10 text-body-md transition-all" placeholder="Name or Student ID" type="text"/>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="text-label-sm text-on-surface-variant ml-1">Department</label>
+<select class="w-full py-sm rounded-lg border-outline-variant border focus:border-primary focus:ring-4 focus:ring-primary/10 text-body-md transition-all appearance-none bg-white">
+<option>All Departments</option>
+<option>Engineering</option>
+<option>Arts &amp; Sciences</option>
+<option>Business</option>
+<option>Information Tech</option>
+</select>
+</div>
+<div class="space-y-xs">
+<label class="text-label-sm text-on-surface-variant ml-1">Course</label>
+<select class="w-full py-sm rounded-lg border-outline-variant border focus:border-primary focus:ring-4 focus:ring-primary/10 text-body-md transition-all appearance-none bg-white">
+<option>All Courses</option>
+<option>BS Comp Sci</option>
+<option>BS Civil Eng</option>
+<option>BA Psychology</option>
+</select>
+</div>
+<div class="space-y-xs">
+<label class="text-label-sm text-on-surface-variant ml-1">Year Level</label>
+<select class="w-full py-sm rounded-lg border-outline-variant border focus:border-primary focus:ring-4 focus:ring-primary/10 text-body-md transition-all appearance-none bg-white">
+<option>All Years</option>
+<option>1st Year</option>
+<option>2nd Year</option>
+<option>3rd Year</option>
+<option>4th Year</option>
+</select>
+</div>
+<div class="space-y-xs">
+<label class="text-label-sm text-on-surface-variant ml-1">Status</label>
+<select class="w-full py-sm rounded-lg border-outline-variant border focus:border-primary focus:ring-4 focus:ring-primary/10 text-body-md transition-all appearance-none bg-white">
+<option>All Status</option>
+<option>Active</option>
+<option>Inactive</option>
+<option>Suspended</option>
+</select>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Student</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Course</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Year Level</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Exams Taken</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="table-row-hover transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Headshot of a male student in his early 20s, wearing a casual grey hoodie. He has a studious expression and spectacles. The lighting is crisp studio-style lighting against a minimalist slate-blue gradient background, matching the GuidancePulse enterprise aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDarAzk8LwJ7LFxPRLIfrj2CCUR_0ylHPgti1RaqoZhy4XWxwM57S15W3cOH37-67EsD2XVOzaLiRJLriVNC4-JziUSwA9v07RYiw0Brr0RjAPfaRHuPDQxsK_K9A89uhz8B0niYR6UF-mf49amhEE5GcYRjW2sRoFvLs2S_CadzbjSyisW3Awz-7ceRb-PIY-8xs3XGxrpvDRICLBfTL2eixHw_mMx1XnX3LXTWq4alGjAFu6xxikv3Q"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Alex Thompson</p>
+<p class="text-label-sm text-on-surface-variant">ID: GP-2024-001</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">BS Computer Science</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">3rd Year</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">12</td>
+<td class="px-lg py-md">
+<span class="bg-secondary/10 text-secondary px-sm py-1 rounded-full text-label-sm font-bold flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-xs rounded hover:bg-primary-container/10 text-primary transition-colors" title="View Profile"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-xs rounded hover:bg-primary-container/10 text-primary transition-colors" title="Print Records"><span class="material-symbols-outlined text-[20px]">print</span></button>
+<button class="p-xs rounded hover:bg-primary-container/10 text-on-surface-variant transition-colors" title="More Actions"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="table-row-hover transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Headshot of a smiling female student in her late teens, with curly dark hair and a bright yellow polo shirt. She looks confident and approachable. The lighting is high-key and professional, with a clean white background that feels airy and academic, following the GuidancePulse design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_DZhi0qYNatwcMQUlPwFKbg_5tdBfaXAfA33BZl1XJUXMU-0JLt4rN5PrJN4rpSQjVfRpci2VjJhjZGKVrNn8Uw9UkoiKOlh8XueFWKHkjCcaCSaJ7Eobj55a8FPi_GaL2KaGymPKuk35pyzA9W6MZU2HKI8zl0O0uFsd-W9zh3zOZlfUQ5rdEWKTsj1Dk4sgQHSVFmqCwUuyhLNn5MjrZv8Dud5eUk3ZB_qhyno7lta58aJeRG4IYg"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Maya Rodriguez</p>
+<p class="text-label-sm text-on-surface-variant">ID: GP-2024-042</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">BA Psychology</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">2nd Year</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">8</td>
+<td class="px-lg py-md">
+<span class="bg-secondary/10 text-secondary px-sm py-1 rounded-full text-label-sm font-bold flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-xs rounded hover:bg-primary-container/10 text-primary transition-colors" title="View Profile"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-xs rounded hover:bg-primary-container/10 text-primary transition-colors" title="Print Records"><span class="material-symbols-outlined text-[20px]">print</span></button>
+<button class="p-xs rounded hover:bg-primary-container/10 text-on-surface-variant transition-colors" title="More Actions"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="table-row-hover transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Professional studio headshot of a focused male student with short-cropped hair and a light denim shirt. He has a serious, concentrated expression. The lighting is dramatic but soft, highlighting the textures of his clothing. The background is a soft blue-grey, aligning with the enterprise-grade UI aesthetics of GuidancePulse." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUpxOuUZr89iI3t-zpXXKSIDwB0rMLAKIRqqrSlTCfdo3RyQqzvfeu1SJnwlLMubNdW4Y06sAVr05WjAfAY3QsdKjSGBUr31EBNIjDyiunLX_6hvpfpa2Nsh0uRVZBiH5yaTu2kwIqo0DA-c3s39kGh4-1ZiJzC-fnLR-vrpGvlYB3aBMYbs-aZR5hdtNVFvtGl4TTcXPx9bQDktwBjqDcYL5iAjE2gMaO1VeS66Whnm0oFCKrC-djeQ"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Jordan Chen</p>
+<p class="text-label-sm text-on-surface-variant">ID: GP-2023-118</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">BS Civil Engineering</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">4th Year</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">24</td>
+<td class="px-lg py-md">
+<span class="bg-on-surface-variant/10 text-on-surface-variant px-sm py-1 rounded-full text-label-sm font-bold flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></span>
+                                    Inactive
+                                </span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-xs rounded hover:bg-primary-container/10 text-primary transition-colors" title="View Profile"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-xs rounded hover:bg-primary-container/10 text-primary transition-colors" title="Print Records"><span class="material-symbols-outlined text-[20px]">print</span></button>
+<button class="p-xs rounded hover:bg-primary-container/10 text-on-surface-variant transition-colors" title="More Actions"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="table-row-hover transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Headshot of a friendly female student wearing a maroon turtleneck and subtle silver jewelry. She has a bright, intellectual gaze and a welcoming smile. The photography is clean with high dynamic range, using a soft, blurred library environment in the background to emphasize an academic setting within the GuidancePulse application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4B9U6fyyrFwrhQR1BzaMC2DMewVhFgiLdAVPUbs7HblmiHaPL0lj63WbQrtYZl54svigkjgcgIxXM4I296rJk950imkhbNpiD4qiht3uMgkWLQ6u47PvOIJOV0L8kBdKsrycO8HhX9SWGfAhos9cuBZpeEbm-WoFTdlgPIOe7Ycq4COPWBFDqjtXIG7MVwcIAMfs3Gfi7SPQc_WMLYU5IK8ZPUVjwfw5Gh1PjzOtHUL2tl8RQh5CEAA"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Sarah Jenkins</p>
+<p class="text-label-sm text-on-surface-variant">ID: GP-2024-089</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">BS Management</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">1st Year</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">4</td>
+<td class="px-lg py-md">
+<span class="bg-secondary/10 text-secondary px-sm py-1 rounded-full text-label-sm font-bold flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-xs rounded hover:bg-primary-container/10 text-primary transition-colors" title="View Profile"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-xs rounded hover:bg-primary-container/10 text-primary transition-colors" title="Print Records"><span class="material-symbols-outlined text-[20px]">print</span></button>
+<button class="p-xs rounded hover:bg-primary-container/10 text-on-surface-variant transition-colors" title="More Actions"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="table-row-hover transition-colors border-b-0">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Headshot of a male student with a creative look, wearing a green linen shirt and thick-rimmed glasses. He has a thoughtful expression. The lighting is soft and directional, creating a gentle depth. The background is a minimalist grey wall with subtle geometric shadows, consistent with the clean SaaS interface of GuidancePulse." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCC898SJx_o7egu_acxJ878keuA8vjZwcQgjTSxXJQmB4wBT_ogxQHH4FzQaLRaw9zQ9KfG1-6KbGhFAUyg5CwZyDWkzJ9zCwrDYkZWjDoTlB7VdS6l6THY76x4jzT9d_fjbMlS49Nc8waJPjeHW5fYg9wORQBPSHIVktMKm7JL3h7Pgcxl2OiBX4jloF6hlp0T_4tD_RilpApEJLVxKu-HgrNHZHeFwyKdqVytyf4EH9fROpJXSMluQ"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Liam O'Connor</p>
+<p class="text-label-sm text-on-surface-variant">ID: GP-2023-201</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">BS Information Tech</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">3rd Year</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">18</td>
+<td class="px-lg py-md">
+<span class="bg-secondary/10 text-secondary px-sm py-1 rounded-full text-label-sm font-bold flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-xs rounded hover:bg-primary-container/10 text-primary transition-colors" title="View Profile"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-xs rounded hover:bg-primary-container/10 text-primary transition-colors" title="Print Records"><span class="material-symbols-outlined text-[20px]">print</span></button>
+<button class="p-xs rounded hover:bg-primary-container/10 text-on-surface-variant transition-colors" title="More Actions"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-lg py-md bg-surface-container-low flex items-center justify-between border-t border-outline-variant">
+<p class="text-label-sm text-on-surface-variant">Showing <span class="font-bold text-on-surface">1 - 5</span> of <span class="font-bold text-on-surface">1,240</span> students</p>
+<div class="flex items-center gap-xs">
+<button class="p-sm rounded-lg border border-outline-variant text-on-surface-variant hover:bg-white transition-all disabled:opacity-40" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg bg-primary text-on-primary font-bold text-label-md">1</button>
+<button class="w-10 h-10 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-white transition-all font-label-md">2</button>
+<button class="w-10 h-10 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-white transition-all font-label-md">3</button>
+<span class="px-sm text-on-surface-variant">...</span>
+<button class="w-10 h-10 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-white transition-all font-label-md">248</button>
+<button class="p-sm rounded-lg border border-outline-variant text-on-surface-variant hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Meta -->
+<div class="flex justify-end pt-xl">
+<div class="flex items-center gap-md text-on-surface-variant/40">
+<span class="material-symbols-outlined">security</span>
+<p class="text-label-sm">End-to-end encrypted student database management</p>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple micro-interaction for dropdowns and buttons
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', () => {
+                select.classList.add('scale-[0.98]');
+                setTimeout(() => select.classList.remove('scale-[0.98]'), 100);
+            });
+        });
+
+        // Search input animation
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('shadow-md');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('shadow-md');
+        });
+    </script>
+</body></html>

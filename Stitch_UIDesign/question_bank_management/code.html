@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Question Bank | Counselor Portal</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#6cf8bb",
+                        "surface-container": "#eceef0",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary-fixed": "#00174b",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "on-error": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "tertiary": "#46566c",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-fixed-variant": "#005236",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed": "#002113",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "surface-bright": "#f7f9fb",
+                        "background": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "secondary": "#006c49",
+                        "inverse-primary": "#b4c5ff",
+                        "primary-container": "#2563eb",
+                        "surface-dim": "#d8dadc",
+                        "primary": "#004ac6",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-surface-variant": "#434655",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#6ffbbe",
+                        "primary-fixed": "#dbe1ff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary-container": "#00714d",
+                        "outline": "#737686",
+                        "surface-tint": "#0053db",
+                        "outline-variant": "#c3c6d7",
+                        "on-primary-container": "#eeefff",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-container": "#5e6e85",
+                        "surface-container-low": "#f2f4f6",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-tertiary-container": "#e9f0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "xs": "4px",
+                        "xl": "40px",
+                        "container-margin": "32px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-active {
+            background-color: #e7ebf3;
+        }
+        tr:hover .action-btns {
+            opacity: 1;
+        }
+        .action-btns {
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface overflow-x-hidden">
+<div class="flex h-screen overflow-hidden">
+<!-- SIDEBAR (Left Navigation) -->
+<aside class="w-72 flex-shrink-0 flex flex-col bg-surface-container-lowest border-r border-outline-variant h-full">
+<div class="p-6 flex flex-col gap-8 h-full">
+<!-- Branding -->
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-on-surface font-bold text-base leading-tight">Counselor Portal</h1>
+<p class="text-on-surface-variant text-xs font-normal">Academic Support</p>
+</div>
+</div>
+<!-- Nav Links -->
+<nav class="flex flex-col gap-1 grow">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<p class="text-sm font-medium">Assessments</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg sidebar-active text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">database</span>
+<p class="text-sm font-bold">Question Bank</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-sm font-medium">Students</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<p class="text-sm font-medium">Reports</p>
+</a>
+</nav>
+<!-- Bottom User Info (Simulated from shared) -->
+<div class="mt-auto border-t border-outline-variant pt-4 flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="A professional headshot of a female counselor in her late 30s, wearing a navy blue blazer and smiling warmly at the camera. The background is a brightly lit, modern office with soft-focus bookshelves and indoor plants. High-quality corporate photography style with natural skin tones and soft light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDOyYVlsz6qt1G-lhw626v_UV7QEi9uLtdrOQCGF66HuzVcUaIoHZWaAAcZ934X7ocy-ZvXdGfixuY5G8EPKe3fgfqltVOPVdhAKazDaAX5RYrof8EXdpZRGe2wV7ilW6nBN5pxG656rQeBOy_gTfWCfwFf1VO_jHges6XZ5gDc2IM6UDjGwY7qZD_h1niK0hs3TXf8soQKROwMdXS3Zxpr-cEC-bJTqjDCFw6TZF3hg-aexYwy-14FBw')"></div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-bold truncate">Sarah Jenkins</p>
+<p class="text-xs text-on-surface-variant truncate">Lead Counselor</p>
+</div>
+<button class="ml-auto text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-xl">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- MAIN CONTENT AREA -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-surface">
+<!-- TOP BAR -->
+<header class="h-16 flex items-center justify-between px-8 bg-surface-container-lowest border-b border-outline-variant">
+<div class="flex items-center w-96 relative">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search questions, topics, or IDs..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="size-10 rounded-lg flex items-center justify-center hover:bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="size-10 rounded-lg flex items-center justify-center hover:bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium">Academic Year 2024</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+</header>
+<!-- SCROLLABLE CONTENT -->
+<div class="flex-1 overflow-y-auto px-8 py-8">
+<!-- Page Header & CTAs -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+<div>
+<h2 class="text-3xl font-black text-on-surface tracking-tight">Question Bank</h2>
+<p class="text-on-surface-variant mt-1">Manage and curate 1,420 questions for student assessments.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2.5 bg-surface-container-high text-on-surface font-bold text-sm rounded-lg hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-lg">upload_file</span>
+                            Import Questions
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white font-bold text-sm rounded-lg hover:brightness-110 transition-all shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg">add</span>
+                            Add New Question
+                        </button>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant shadow-sm flex flex-wrap items-center gap-4 mb-6">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Filters:</span>
+</div>
+<!-- Category Filter -->
+<div class="relative">
+<select class="appearance-none bg-surface-container border border-outline-variant rounded-lg pl-3 pr-10 py-1.5 text-sm font-medium focus:ring-primary focus:border-primary cursor-pointer">
+<option>Category: All</option>
+<option>Math</option>
+<option>English</option>
+<option>Abstract Reasoning</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-lg">expand_more</span>
+</div>
+<!-- Difficulty Filter -->
+<div class="relative">
+<select class="appearance-none bg-surface-container border border-outline-variant rounded-lg pl-3 pr-10 py-1.5 text-sm font-medium focus:ring-primary focus:border-primary cursor-pointer">
+<option>Difficulty: All</option>
+<option>Easy</option>
+<option>Medium</option>
+<option>Hard</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-lg">expand_more</span>
+</div>
+<!-- Status Filter -->
+<div class="relative">
+<select class="appearance-none bg-surface-container border border-outline-variant rounded-lg pl-3 pr-10 py-1.5 text-sm font-medium focus:ring-primary focus:border-primary cursor-pointer">
+<option>Status: Active</option>
+<option>Draft</option>
+<option>Archived</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-lg">expand_more</span>
+</div>
+<button class="text-primary text-sm font-bold hover:underline ml-auto">Clear All Filters</button>
+</div>
+<!-- Table Container -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden relative">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 w-12">
+<input class="rounded border-outline text-primary focus:ring-primary size-4" id="selectAll" type="checkbox"/>
+</th>
+<th class="px-4 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">Question Preview</th>
+<th class="px-4 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">Category</th>
+<th class="px-4 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">Difficulty</th>
+<th class="px-4 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">Points</th>
+<th class="px-4 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">Last Updated</th>
+<th class="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider text-on-surface-variant">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<input class="question-checkbox rounded border-outline text-primary focus:ring-primary size-4" type="checkbox"/>
+</td>
+<td class="px-4 py-4 max-w-md">
+<p class="text-sm font-medium text-on-surface line-clamp-1">If x + 5 = 12, what is the value of 2x - 4?</p>
+<p class="text-xs text-on-surface-variant mt-1">ID: Q-88219 • MCQ</p>
+</td>
+<td class="px-4 py-4">
+<span class="px-2 py-1 rounded text-xs font-bold bg-blue-100 text-blue-700">Math</span>
+</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-green-500"></div>
+<span class="text-sm font-medium">Easy</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-medium">5 pts</span>
+</td>
+<td class="px-4 py-4 text-sm text-on-surface-variant">
+                                    2 days ago
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="action-btns flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant" title="Edit">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant" title="Duplicate">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-error-container text-error" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<input class="question-checkbox rounded border-outline text-primary focus:ring-primary size-4" type="checkbox"/>
+</td>
+<td class="px-4 py-4 max-w-md">
+<p class="text-sm font-medium text-on-surface line-clamp-1">Identify the correctly punctuated sentence from the following options:</p>
+<p class="text-xs text-on-surface-variant mt-1">ID: Q-88421 • Grammar</p>
+</td>
+<td class="px-4 py-4">
+<span class="px-2 py-1 rounded text-xs font-bold bg-purple-100 text-purple-700">English</span>
+</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-yellow-500"></div>
+<span class="text-sm font-medium">Medium</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-medium">10 pts</span>
+</td>
+<td class="px-4 py-4 text-sm text-on-surface-variant">
+                                    1 week ago
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="action-btns flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant" title="Edit">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant" title="Duplicate">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-error-container text-error" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<input class="question-checkbox rounded border-outline text-primary focus:ring-primary size-4" type="checkbox"/>
+</td>
+<td class="px-4 py-4 max-w-md">
+<p class="text-sm font-medium text-on-surface line-clamp-1">Which pattern follows next in the sequence of rotated isometric cubes?</p>
+<p class="text-xs text-on-surface-variant mt-1">ID: Q-89102 • Pattern Recognition</p>
+</td>
+<td class="px-4 py-4">
+<span class="px-2 py-1 rounded text-xs font-bold bg-orange-100 text-orange-700">Abstract</span>
+</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-red-500"></div>
+<span class="text-sm font-medium">Hard</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-medium">15 pts</span>
+</td>
+<td class="px-4 py-4 text-sm text-on-surface-variant">
+                                    3 weeks ago
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="action-btns flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant" title="Edit">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant" title="Duplicate">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-error-container text-error" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<input class="question-checkbox rounded border-outline text-primary focus:ring-primary size-4" type="checkbox"/>
+</td>
+<td class="px-4 py-4 max-w-md">
+<p class="text-sm font-medium text-on-surface line-clamp-1">Analyze the following passage and determine the author's primary tone:</p>
+<p class="text-xs text-on-surface-variant mt-1">ID: Q-89445 • Reading Comp</p>
+</td>
+<td class="px-4 py-4">
+<span class="px-2 py-1 rounded text-xs font-bold bg-purple-100 text-purple-700">English</span>
+</td>
+<td class="px-4 py-4">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-yellow-500"></div>
+<span class="text-sm font-medium">Medium</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-medium">10 pts</span>
+</td>
+<td class="px-4 py-4 text-sm text-on-surface-variant">
+                                    Oct 12, 2023
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="action-btns flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant" title="Edit">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant" title="Duplicate">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-error-container text-error" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Footer -->
+<div class="p-4 bg-surface-container-lowest border-t border-outline-variant flex items-center justify-between">
+<p class="text-sm text-on-surface-variant">Showing <span class="font-bold">1-10</span> of <span class="font-bold">1,420</span> questions</p>
+<div class="flex items-center gap-1">
+<button class="size-9 rounded-lg flex items-center justify-center hover:bg-surface-container disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="size-9 rounded-lg flex items-center justify-center bg-primary text-white text-sm font-bold">1</button>
+<button class="size-9 rounded-lg flex items-center justify-center hover:bg-surface-container text-sm font-bold">2</button>
+<button class="size-9 rounded-lg flex items-center justify-center hover:bg-surface-container text-sm font-bold">3</button>
+<span class="px-2 text-on-surface-variant">...</span>
+<button class="size-9 rounded-lg flex items-center justify-center hover:bg-surface-container text-sm font-bold">142</button>
+<button class="size-9 rounded-lg flex items-center justify-center hover:bg-surface-container">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- FLOATING BULK ACTION BAR (Hidden by default, shown via JS) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-6 py-4 rounded-full shadow-2xl flex items-center gap-6 transition-all transform translate-y-24 opacity-0 z-50" id="bulkActionBar">
+<div class="flex items-center gap-3 pr-6 border-r border-outline">
+<span class="font-bold" id="selectionCount">3</span>
+<span class="text-sm opacity-80">items selected</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined">maps_ar</span>
+<span class="text-sm font-bold">Move to Category</span>
+</button>
+<button class="flex items-center gap-2 hover:text-error transition-colors">
+<span class="material-symbols-outlined">delete</span>
+<span class="text-sm font-bold">Delete Selected</span>
+</button>
+</div>
+<button class="ml-4 hover:bg-surface-variant/20 p-1 rounded-full" id="cancelSelection">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+</main>
+</div>
+<script>
+        // Micro-interaction for Bulk Selection
+        const selectAll = document.getElementById('selectAll');
+        const checkboxes = document.querySelectorAll('.question-checkbox');
+        const bulkActionBar = document.getElementById('bulkActionBar');
+        const selectionCount = document.getElementById('selectionCount');
+        const cancelSelection = document.getElementById('cancelSelection');
+
+        function updateActionBar() {
+            const checkedCount = document.querySelectorAll('.question-checkbox:checked').length;
+            if (checkedCount > 0) {
+                selectionCount.innerText = checkedCount;
+                bulkActionBar.classList.remove('translate-y-24', 'opacity-0');
+            } else {
+                bulkActionBar.classList.add('translate-y-24', 'opacity-0');
+                selectAll.checked = false;
+            }
+        }
+
+        selectAll.addEventListener('change', (e) => {
+            checkboxes.forEach(cb => cb.checked = e.target.checked);
+            updateActionBar();
+        });
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                updateActionBar();
+            });
+        });
+
+        cancelSelection.addEventListener('click', () => {
+            checkboxes.forEach(cb => cb.checked = false);
+            selectAll.checked = false;
+            updateActionBar();
+        });
+    </script>
+</body></html>

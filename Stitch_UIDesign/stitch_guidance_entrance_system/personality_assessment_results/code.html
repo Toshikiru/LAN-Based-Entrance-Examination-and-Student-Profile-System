@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GuidancePulse | Assessment Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#f7f9fb",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-dim": "#d8dadc",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary": "#006c49",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-tertiary-container": "#e9f0ff",
+                    "on-primary-fixed": "#00174b",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e6e8ea",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "on-secondary-container": "#00714d",
+                    "outline-variant": "#c3c6d7",
+                    "surface-container-low": "#f2f4f6",
+                    "on-surface": "#191c1e",
+                    "inverse-surface": "#2d3133",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#6cf8bb",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "on-background": "#191c1e",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-surface-variant": "#434655",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#2563eb",
+                    "background": "#f7f9fb",
+                    "surface-variant": "#e0e3e5",
+                    "outline": "#737686",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary-container": "#eeefff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "tertiary-fixed": "#d3e4fe",
+                    "primary": "#004ac6",
+                    "surface-tint": "#0053db",
+                    "surface-container": "#eceef0",
+                    "surface-bright": "#f7f9fb",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-secondary-fixed": "#002113",
+                    "tertiary-container": "#5e6e85",
+                    "tertiary": "#46566c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "xl": "40px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "container-margin": "32px",
+                    "gutter": "20px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-bar-transition {
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-md">
+<span class="text-headline-md font-headline-md font-bold text-primary">GuidancePulse</span>
+<div class="hidden md:flex ml-lg items-center bg-surface-container-low px-md py-xs rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-64" placeholder="Search student records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female school administrator in her 40s, wearing business casual attire. She has a friendly, authoritative expression. The background is a blurred office environment with soft, natural lighting, consistent with a modern, high-end educational institution's clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARzrwKXaOIj9UiDHzW12XSNTeH6G-t5GSSC2wcy294l6bg5gwq9z551A7UfBdTH3mjGQHXEVf_GrTbYWGlZsNZVefEKJmx2z3pfQ2j_7tP8KUwx125Q3anD03LXQ_wxN7-PupLPIOPsKhLm61cukMdYRj7Ai_PgN6pFky1LiJx-LzDPEgBHs8e7RX0RZzQ7tInw_dOE4x-rt-wgH4aIpLkwI9Dy5NR-C947pJd1q016FgQb9it_MhN7g"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-lg z-40">
+<div class="px-lg mb-xl">
+<div class="flex items-center gap-sm mb-xs">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white">school</span>
+</div>
+<div>
+<p class="font-headline-md text-label-md font-bold text-primary">GuidancePulse</p>
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Academic Management</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-md space-y-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md">Student Directory</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md">Student Profiles</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="font-label-md">Examination History</span>
+</a>
+<!-- Active Tab: Assessments -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary border-l-4 border-primary bg-primary-container/10 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="psychology" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-label-md font-bold">Assessments</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-label-md">Cumulative Records</span>
+</a>
+</nav>
+<div class="px-md mt-auto pt-lg space-y-xs border-t border-outline-variant/30">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] mt-16 p-xl max-w-[1400px]">
+<!-- Header Section -->
+<header class="mb-xl flex justify-between items-end">
+<div>
+<div class="flex items-center gap-sm text-on-surface-variant mb-xs">
+<span class="font-label-md">Student Profiles</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-label-md">Alex Rivera</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-label-md text-primary font-bold">Assessments</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Psychometric &amp; Performance Analysis</h1>
+<p class="text-on-surface-variant max-w-2xl mt-xs">Detailed breakdown of cognitive abilities, personality traits, and career alignments for the academic year 2023-2024.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-lg py-sm rounded-lg border border-outline text-primary font-bold hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                    Print Report
+                </button>
+<button class="flex items-center gap-xs px-lg py-sm rounded-lg bg-primary text-white font-bold shadow-sm hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    Assign New Test
+                </button>
+</div>
+</header>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Personality Trait Visualization (High-End Radar/Bar Simulation) -->
+<div class="col-span-12 lg:col-span-8 bg-white border border-outline-variant rounded-xl p-lg shadow-sm">
+<div class="flex justify-between items-center mb-lg">
+<h2 class="font-headline-md text-headline-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                        Core Personality Profile (Big Five)
+                    </h2>
+<div class="flex gap-xs bg-surface-container rounded-lg p-[2px]">
+<button class="px-md py-xs bg-white rounded-md shadow-sm font-label-sm text-primary">Bar Chart</button>
+<button class="px-md py-xs rounded-md font-label-sm text-on-surface-variant hover:text-on-surface transition-colors">Radar</button>
+</div>
+</div>
+<div class="space-y-lg">
+<!-- Trait Bar 1 -->
+<div class="group">
+<div class="flex justify-between mb-sm">
+<span class="font-label-md font-bold text-on-surface">Openness to Experience</span>
+<span class="font-label-md text-primary">88/100</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full chart-bar-transition" style="width: 88%;"></div>
+</div>
+<p class="text-label-sm text-on-surface-variant mt-sm group-hover:text-on-surface transition-colors">Strong inclination toward abstract thinking, creativity, and unconventional academic exploration.</p>
+</div>
+<!-- Trait Bar 2 -->
+<div class="group">
+<div class="flex justify-between mb-sm">
+<span class="font-label-md font-bold text-on-surface">Conscientiousness</span>
+<span class="font-label-md text-secondary">74/100</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full chart-bar-transition" style="width: 74%;"></div>
+</div>
+<p class="text-label-sm text-on-surface-variant mt-sm group-hover:text-on-surface transition-colors">High degree of self-discipline; tends to be organized and deliberate in study habits.</p>
+</div>
+<!-- Trait Bar 3 -->
+<div class="group">
+<div class="flex justify-between mb-sm">
+<span class="font-label-md font-bold text-on-surface">Extraversion</span>
+<span class="font-label-md text-tertiary">42/100</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full chart-bar-transition" style="width: 42%;"></div>
+</div>
+<p class="text-label-sm text-on-surface-variant mt-sm group-hover:text-on-surface transition-colors">Prefers independent research and small group settings; may need encouragement for public presentations.</p>
+</div>
+<!-- Trait Bar 4 -->
+<div class="group">
+<div class="flex justify-between mb-sm">
+<span class="font-label-md font-bold text-on-surface">Agreeableness</span>
+<span class="font-label-md text-on-primary-fixed-variant">65/100</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-primary-fixed-variant rounded-full chart-bar-transition" style="width: 65%;"></div>
+</div>
+<p class="text-label-sm text-on-surface-variant mt-sm group-hover:text-on-surface transition-colors">Cooperative team player who values harmony in classroom dynamics.</p>
+</div>
+<!-- Trait Bar 5 -->
+<div class="group">
+<div class="flex justify-between mb-sm">
+<span class="font-label-md font-bold text-on-surface">Emotional Stability</span>
+<span class="font-label-md text-primary-container">81/100</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full chart-bar-transition" style="width: 81%;"></div>
+</div>
+<p class="text-label-sm text-on-surface-variant mt-sm group-hover:text-on-surface transition-colors">Resilient under pressure; maintains focus during high-stakes testing environments.</p>
+</div>
+</div>
+</div>
+<!-- IQ / Cognitive Summary Card -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<div class="bg-primary text-white rounded-xl p-lg shadow-lg relative overflow-hidden flex-1">
+<div class="relative z-10">
+<p class="font-label-sm uppercase tracking-widest text-primary-fixed/80 mb-sm">Cognitive Benchmark</p>
+<h3 class="font-headline-lg text-[48px] font-extrabold mb-xs">128</h3>
+<p class="font-headline-md mb-lg">Superior Range (Top 3%)</p>
+<div class="space-y-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined">calculate</span>
+</div>
+<div>
+<p class="text-label-sm font-bold">Quantitative Reasoning</p>
+<p class="text-label-md text-white/70">Exceptional fluency in patterns.</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined">translate</span>
+</div>
+<div>
+<p class="text-label-sm font-bold">Verbal Comprehension</p>
+<p class="text-label-md text-white/70">High vocabulary &amp; context depth.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+</div>
+<div class="bg-secondary-container text-on-secondary-container rounded-xl p-lg flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="bg-secondary p-sm rounded-lg text-white">
+<span class="material-symbols-outlined">work</span>
+</div>
+<span class="bg-secondary/10 px-md py-xs rounded-full text-label-sm font-bold">Match Score: 94%</span>
+</div>
+<div>
+<h4 class="font-headline-md text-label-md font-bold mb-xs">Top Career Alignment</h4>
+<p class="font-headline-md">Software Architect</p>
+<p class="text-label-sm mt-sm opacity-80">Based on combined IQ, logic puzzles, and "Openness" personality trait.</p>
+</div>
+</div>
+</div>
+<!-- Detailed Assessment Cards -->
+<div class="col-span-12">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-md text-headline-md">Recent Assessments</h2>
+<button class="text-primary font-bold text-label-md flex items-center gap-xs hover:underline">
+                        View All History <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-lg">
+<!-- Card 1: RIASEC Career Interest -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden hover:shadow-md transition-all group flex flex-col">
+<div class="p-lg flex-1">
+<div class="flex justify-between items-start mb-md">
+<div class="bg-surface-container p-sm rounded-lg">
+<span class="material-symbols-outlined text-primary">explore</span>
+</div>
+<span class="bg-secondary/10 text-secondary px-sm py-[2px] rounded-full text-[10px] font-bold uppercase">Completed Sep 12</span>
+</div>
+<h3 class="font-headline-md text-[18px] mb-sm">RIASEC Career Interest</h3>
+<div class="flex gap-xs mb-md">
+<span class="px-md py-xs bg-primary/5 text-primary rounded-full text-[12px] font-bold">Investigative</span>
+<span class="px-md py-xs bg-primary/5 text-primary rounded-full text-[12px] font-bold">Artistic</span>
+</div>
+<div class="space-y-sm">
+<p class="text-label-md text-on-surface-variant leading-relaxed">
+<strong>Interpretation:</strong> Shows a strong preference for working with ideas and data. Exhibits "Thinker" characteristics with a blend of creative problem-solving.
+                                </p>
+<div class="p-md bg-surface-container-low rounded-lg border-l-4 border-primary">
+<p class="text-label-sm font-bold text-on-surface mb-xs">Recommendations:</p>
+<p class="text-label-sm text-on-surface-variant">Focus on STEM or Digital Arts curricula. Enroll in advanced coding or graphic design workshops.</p>
+</div>
+</div>
+</div>
+<button class="w-full py-md bg-surface-container-low border-t border-outline-variant group-hover:bg-primary group-hover:text-white transition-colors font-bold text-label-sm flex items-center justify-center gap-xs">
+                            Full Analysis <span class="material-symbols-outlined text-[18px]">launch</span>
+</button>
+</div>
+<!-- Card 2: Emotional Intelligence (EQ-i) -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden hover:shadow-md transition-all group flex flex-col">
+<div class="p-lg flex-1">
+<div class="flex justify-between items-start mb-md">
+<div class="bg-surface-container p-sm rounded-lg">
+<span class="material-symbols-outlined text-tertiary">favorite</span>
+</div>
+<span class="bg-secondary/10 text-secondary px-sm py-[2px] rounded-full text-[10px] font-bold uppercase">Completed Oct 05</span>
+</div>
+<h3 class="font-headline-md text-[18px] mb-sm">Emotional Intelligence (EQ-i)</h3>
+<div class="flex gap-xs mb-md">
+<span class="px-md py-xs bg-tertiary/5 text-tertiary rounded-full text-[12px] font-bold">Empathy (High)</span>
+<span class="px-md py-xs bg-tertiary/5 text-tertiary rounded-full text-[12px] font-bold">Assertive (Low)</span>
+</div>
+<div class="space-y-sm">
+<p class="text-label-md text-on-surface-variant leading-relaxed">
+<strong>Interpretation:</strong> Highly attuned to others' emotions and needs. May struggle with direct confrontation or advocating for self in group projects.
+                                </p>
+<div class="p-md bg-surface-container-low rounded-lg border-l-4 border-tertiary">
+<p class="text-label-sm font-bold text-on-surface mb-xs">Recommendations:</p>
+<p class="text-label-sm text-on-surface-variant">Social skills training focused on assertiveness. Peer mediation training would suit their natural empathy.</p>
+</div>
+</div>
+</div>
+<button class="w-full py-md bg-surface-container-low border-t border-outline-variant group-hover:bg-tertiary group-hover:text-white transition-colors font-bold text-label-sm flex items-center justify-center gap-xs">
+                            Full Analysis <span class="material-symbols-outlined text-[18px]">launch</span>
+</button>
+</div>
+<!-- Card 3: Learning Style Inventory -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden hover:shadow-md transition-all group flex flex-col">
+<div class="p-lg flex-1">
+<div class="flex justify-between items-start mb-md">
+<div class="bg-surface-container p-sm rounded-lg">
+<span class="material-symbols-outlined text-secondary">menu_book</span>
+</div>
+<span class="bg-secondary/10 text-secondary px-sm py-[2px] rounded-full text-[10px] font-bold uppercase">Completed Oct 28</span>
+</div>
+<h3 class="font-headline-md text-[18px] mb-sm">Learning Style Inventory</h3>
+<div class="flex gap-xs mb-md">
+<span class="px-md py-xs bg-secondary/5 text-secondary rounded-full text-[12px] font-bold">Visual</span>
+<span class="px-md py-xs bg-secondary/5 text-secondary rounded-full text-[12px] font-bold">Read/Write</span>
+</div>
+<div class="space-y-sm">
+<p class="text-label-md text-on-surface-variant leading-relaxed">
+<strong>Interpretation:</strong> Learns best through diagrams, written instructions, and visual mapping. Audio-only lectures are least effective for long-term retention.
+                                </p>
+<div class="p-md bg-surface-container-low rounded-lg border-l-4 border-secondary">
+<p class="text-label-sm font-bold text-on-surface mb-xs">Recommendations:</p>
+<p class="text-label-sm text-on-surface-variant">Utilize mind-mapping software. Provide transcriptions for audio resources. Use flashcards for memorization.</p>
+</div>
+</div>
+</div>
+<button class="w-full py-md bg-surface-container-low border-t border-outline-variant group-hover:bg-secondary group-hover:text-white transition-colors font-bold text-label-sm flex items-center justify-center gap-xs">
+                            Full Analysis <span class="material-symbols-outlined text-[18px]">launch</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Comparison / Growth Section -->
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-lg mt-lg">
+<div class="glass-card border border-outline-variant rounded-xl p-lg flex items-center gap-lg">
+<div class="w-24 h-24 rounded-full border-[6px] border-primary-container/20 border-t-primary-container flex items-center justify-center relative">
+<span class="font-headline-md text-primary-container">82%</span>
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="text-primary" cx="50%" cy="50%" fill="none" r="42" stroke="currentColor" stroke-dasharray="264" stroke-dashoffset="47" stroke-width="6"></circle>
+</svg>
+</div>
+<div>
+<h4 class="font-headline-md text-label-md font-bold mb-xs">Personal Growth Index</h4>
+<p class="text-label-sm text-on-surface-variant mb-sm">Improvement in "Conscientiousness" and "Self-Regulation" scores since last semester.</p>
+<div class="flex items-center gap-xs text-secondary font-bold text-label-sm">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                            +12% Year-over-Year
+                        </div>
+</div>
+</div>
+<div class="glass-card border border-outline-variant rounded-xl p-lg flex items-center gap-lg">
+<div class="bg-surface-container rounded-xl w-24 h-24 flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[32px]">event_available</span>
+<span class="text-[10px] font-bold uppercase mt-xs">Next Test</span>
+</div>
+<div>
+<h4 class="font-headline-md text-label-md font-bold mb-xs">Upcoming Assessment</h4>
+<p class="text-label-sm text-on-surface-variant mb-sm">College Readiness &amp; Scholastic Aptitude (CRSA) is scheduled for next month.</p>
+<p class="text-label-sm font-bold text-primary">Dec 14, 2023 • Room 402</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate progress bars on load
+            const bars = document.querySelectorAll('.chart-bar-transition');
+            bars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 300);
+            });
+
+            // Smooth scale interaction for cards
+            const cards = document.querySelectorAll('.bg-white.border');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-4px)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body></html>

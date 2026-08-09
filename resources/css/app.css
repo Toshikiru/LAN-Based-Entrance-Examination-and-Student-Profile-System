@@ -1,0 +1,319 @@
+@import 'tailwindcss';
+@config '../../tailwind.config.js';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source "../**/*.blade.php";
+@source "../**/*.js";
+
+@import '@fontsource-variable/inter';
+@import 'material-symbols/outlined.css';
+
+/* ---------------------------------------------------------------
+   `max-w-sm`/`max-w-md`/`max-w-lg`/`max-w-xl` fix — see the matching
+   comment on `spacing` in tailwind.config.js for the full explanation.
+   Short version: this app's custom spacing scale defines `sm`/`md`/`lg`/`xl`
+   keys (8/16/24/40px, for `p-sm`, `gap-lg`, etc.), and under Tailwind v4
+   `max-w-<key>` is derived directly from a same-named `spacing` key
+   whenever one exists — it never falls back to Tailwind's own default
+   max-width scale in that case. That silently collapsed every
+   `max-w-sm/md/lg/xl` in the app (~17 views, including the login card and
+   every `<x-ui.modal>`) down to a few pixels wide instead of their real
+   24/28/32/36rem sizes. This was flagged as a known, not-yet-fixed issue
+   while the CDN build was still active (which used a completely separate,
+   independent config with no such collision) — switching to this local
+   build is what actually exposed it.
+   A plain top-level rule (not `@layer utilities`) is required: Tailwind v4
+   generates utilities inside a cascade layer, which always loses to any
+   unlayered rule regardless of source order, so this reliably wins without
+   needing `!important`.
+--------------------------------------------------------------- */
+.max-w-sm { max-width: 24rem; }
+.max-w-md { max-width: 28rem; }
+.max-w-lg { max-width: 32rem; }
+.max-w-xl { max-width: 36rem; }
+
+/* ---------------------------------------------------------------
+   Design tokens — Light theme (default, from Stitch DESIGN.md)
+--------------------------------------------------------------- */
+:root {
+    --color-tertiary-fixed: #d3e4fe;
+    --color-outline-variant: #c3c6d7;
+    --color-primary-fixed: #dbe1ff;
+    --color-background: #f7f9fb;
+    --color-surface-dim: #d8dadc;
+    --color-outline: #737686;
+    --color-on-secondary-fixed-variant: #005236;
+    --color-surface-container-low: #f2f4f6;
+    --color-on-background: #191c1e;
+    --color-on-error: #ffffff;
+    --color-primary-container: #2563eb;
+    --color-on-tertiary: #ffffff;
+    --color-on-primary: #ffffff;
+    --color-surface-container-highest: #e0e3e5;
+    --color-inverse-surface: #2d3133;
+    --color-primary-fixed-dim: #b4c5ff;
+    --color-on-tertiary-fixed-variant: #38485d;
+    --color-surface-container: #eceef0;
+    --color-surface-container-lowest: #ffffff;
+    --color-on-surface: #191c1e;
+    --color-tertiary-container: #5e6e85;
+    --color-on-error-container: #93000a;
+    --color-primary: #004ac6;
+    --color-tertiary: #46566c;
+    --color-tertiary-fixed-dim: #b7c8e1;
+    --color-secondary-container: #6cf8bb;
+    --color-surface-tint: #0053db;
+    --color-secondary: #006c49;
+    --color-error: #ba1a1a;
+    --color-on-secondary-container: #00714d;
+    --color-surface-container-high: #e6e8ea;
+    --color-secondary-fixed-dim: #4edea3;
+    --color-secondary-fixed: #6ffbbe;
+    --color-on-primary-fixed-variant: #003ea8;
+    --color-on-primary-container: #eeefff;
+    --color-inverse-primary: #b4c5ff;
+    --color-on-tertiary-container: #e9f0ff;
+    --color-inverse-on-surface: #eff1f3;
+    --color-error-container: #ffdad6;
+    --color-on-primary-fixed: #00174b;
+    --color-on-secondary: #ffffff;
+    --color-on-surface-variant: #434655;
+    --color-on-secondary-fixed: #002113;
+    --color-surface-variant: #e0e3e5;
+    --color-on-tertiary-fixed: #0b1c30;
+    --color-surface-bright: #f7f9fb;
+    --color-surface: #f7f9fb;
+
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+}
+
+/* ---------------------------------------------------------------
+   Design tokens — Dark theme
+   Derived per DESIGN.md's "deep navy-charcoal palette" direction,
+   following Material-3 tonal conventions: "fixed" tones stay
+   constant across themes, container/on-container pairs invert.
+--------------------------------------------------------------- */
+.dark {
+    --color-tertiary-fixed: #d3e4fe;
+    --color-outline-variant: #434655;
+    --color-primary-fixed: #dbe1ff;
+    --color-background: #12151b;
+    --color-surface-dim: #12151b;
+    --color-outline: #8d909f;
+    --color-on-secondary-fixed-variant: #005236;
+    --color-surface-container-low: #1a1d23;
+    --color-on-background: #e2e2e6;
+    --color-on-error: #690005;
+    --color-primary-container: #003ea8;
+    --color-on-tertiary: #0b1c30;
+    --color-on-primary: #00174b;
+    --color-surface-container-highest: #33363b;
+    --color-inverse-surface: #e2e2e6;
+    --color-primary-fixed-dim: #b4c5ff;
+    --color-on-tertiary-fixed-variant: #38485d;
+    --color-surface-container: #1e2127;
+    --color-surface-container-lowest: #0c0e13;
+    --color-on-surface: #e2e2e6;
+    --color-tertiary-container: #38485d;
+    --color-on-error-container: #ffdad6;
+    --color-primary: #b4c5ff;
+    --color-tertiary: #b7c8e1;
+    --color-tertiary-fixed-dim: #b7c8e1;
+    --color-secondary-container: #005236;
+    --color-surface-tint: #b4c5ff;
+    --color-secondary: #4edea3;
+    --color-error: #ffb4ab;
+    --color-on-secondary-container: #6ffbbe;
+    --color-surface-container-high: #292c32;
+    --color-secondary-fixed-dim: #4edea3;
+    --color-secondary-fixed: #6ffbbe;
+    --color-on-primary-fixed-variant: #003ea8;
+    --color-on-primary-container: #dbe1ff;
+    --color-inverse-primary: #004ac6;
+    --color-on-tertiary-container: #d3e4fe;
+    --color-inverse-on-surface: #2d3133;
+    --color-error-container: #93000a;
+    --color-on-primary-fixed: #00174b;
+    --color-on-secondary: #002113;
+    --color-on-surface-variant: #c3c6d7;
+    --color-on-secondary-fixed: #002113;
+    --color-surface-variant: #434655;
+    --color-on-tertiary-fixed: #0b1c30;
+    --color-surface-bright: #383c43;
+    --color-surface: #12151b;
+
+    --glass-bg: rgba(18, 21, 27, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ---------------------------------------------------------------
+   Shared utility classes (verbatim from Stitch screens)
+--------------------------------------------------------------- */
+@keyframes gradient-border {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.animated-gradient-border {
+    /* Theme tokens, not hardcoded hex — otherwise this keeps the light-mode
+       blue/green gradient even in dark mode. */
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+    background-size: 200% 200%;
+    animation: gradient-border 4s linear infinite;
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+}
+
+.floating-label-input:focus-within label,
+.floating-label-input input:not(:placeholder-shown) + label {
+    transform: translateY(-24px) scale(0.85);
+    color: var(--color-primary);
+    font-weight: 600;
+    /* Without a background behind the floated label, the input's own
+       top border draws straight through the letters. box-shadow (not
+       padding) extends an opaque patch on all sides without shifting
+       the label's own horizontal position, so this works identically
+       whether or not the field has a leading icon. */
+    background: var(--color-surface-container-lowest);
+    box-shadow: 0 0 0 4px var(--color-surface-container-lowest);
+}
+
+@keyframes pulse-subtle {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 74, 198, 0.4); }
+    70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(0, 74, 198, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 74, 198, 0); }
+}
+.pulse-btn {
+    animation: pulse-subtle 3s infinite;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-size: 20px;
+}
+.material-symbols-outlined.fill-icon {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-outline-variant);
+    border-radius: 10px;
+}
+
+[x-cloak] { display: none !important; }
+
+/* Skeleton shimmer */
+@keyframes skeleton-shimmer {
+    0% { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+}
+.skeleton-shimmer {
+    background: linear-gradient(90deg, var(--color-surface-container) 0px, var(--color-surface-container-high) 40px, var(--color-surface-container) 80px);
+    background-size: 800px 100%;
+    animation: skeleton-shimmer 1.5s linear infinite;
+}
+
+/* Consistent, theme-aware keyboard focus indicator for every interactive
+   element app-wide. Inputs/selects/search already draw their own
+   focus ring via Tailwind `focus:ring-*` utilities, so this is scoped to
+   links, buttons and generic tabbable elements to avoid a doubled ring. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+/* Fallback fade for browsers without View Transitions support (older
+   Firefox/Safari) — modern browsers use the scoped, native transition
+   below instead, so this is skipped there to avoid double-animating.
+   Gated on the same `vt-supported` class the transition script in
+   theme-head.blade.php sets (not a separate `@supports` query) so the two
+   mechanisms are always in agreement about which one is active. */
+html:not(.vt-supported) body {
+    animation: page-fade-in 0.18s ease-out;
+}
+@keyframes page-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ---------------------------------------------------------------
+   Turbo Drive page transitions via the native View Transitions API
+   (wired up in partials/theme-head.blade.php). The permanent sidebar and
+   the topnav are each carved out into their own named transition group
+   and given `animation: none`, so they visually stay completely put
+   — only the page content underneath fades/slides. Browsers without
+   View Transitions support ignore all of this and get the plain
+   fallback fade above instead; nothing here is required for Turbo
+   navigation to work.
+--------------------------------------------------------------- */
+#app-sidebar {
+    view-transition-name: app-sidebar;
+}
+#app-topnav {
+    view-transition-name: app-topnav;
+}
+::view-transition-group(app-sidebar),
+::view-transition-group(app-topnav),
+::view-transition-old(app-sidebar),
+::view-transition-new(app-sidebar),
+::view-transition-old(app-topnav),
+::view-transition-new(app-topnav) {
+    animation: none !important;
+}
+
+/* Old and new must share the exact same duration/easing — mismatched
+   durations leave a brief window where both are partially transparent at
+   once, which reads as a flash/blink on every navigation. A same-length,
+   opacity-only crossfade is the version of this that can't dip. */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.16s;
+    animation-timing-function: ease-in-out;
+}
+::view-transition-old(root) {
+    animation-name: turbo-view-exit;
+}
+::view-transition-new(root) {
+    animation-name: turbo-view-enter;
+}
+@keyframes turbo-view-exit {
+    to { opacity: 0; }
+}
+@keyframes turbo-view-enter {
+    from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+}
+
+/* Turbo Drive's built-in top-of-page loading indicator, themed to match
+   the app instead of its default blue. Turbo shows this automatically
+   on any visit that takes longer than ~500ms. */
+.turbo-progress-bar {
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    box-shadow: 0 0 8px 0 color-mix(in srgb, var(--color-primary) 60%, transparent);
+    transition: opacity 0.15s ease-out, width 0.2s ease-out;
+}

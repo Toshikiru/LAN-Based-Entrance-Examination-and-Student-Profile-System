@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php -l \"C:/xampp/htdocs/capstone_final/guidancepulse/app/Services/CounselorDashboardService.php\")",
+      "Bash(php -l \"C:/xampp/htdocs/capstone_final/guidancepulse/app/Http/Controllers/Student/ExamTakingController.php\")"
+    ]
+  }
+}

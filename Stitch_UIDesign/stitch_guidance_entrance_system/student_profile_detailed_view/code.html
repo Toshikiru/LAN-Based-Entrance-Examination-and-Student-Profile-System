@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Profile - GuidancePulse</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f7f9fb",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-dim": "#d8dadc",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary": "#006c49",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-tertiary-container": "#e9f0ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-secondary-container": "#00714d",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-low": "#f2f4f6",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#6cf8bb",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-surface-variant": "#434655",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#2563eb",
+                        "background": "#f7f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "outline": "#737686",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-container": "#eeefff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "tertiary-fixed": "#d3e4fe",
+                        "primary": "#004ac6",
+                        "surface-tint": "#0053db",
+                        "surface-container": "#eceef0",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary-fixed": "#002113",
+                        "tertiary-container": "#5e6e85",
+                        "tertiary": "#46566c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "container-margin": "32px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #004ac6;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm">
+<div class="flex items-center gap-md">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">GuidancePulse</span>
+<div class="hidden md:flex ml-lg items-center bg-surface-container rounded-full px-md py-xs w-64 border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-full ml-sm" placeholder="Search students..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm rounded-full hover:bg-surface-container dark:hover:bg-surface-variant transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<button class="p-sm rounded-full hover:bg-surface-container dark:hover:bg-surface-variant transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="h-full w-full object-cover" data-alt="Close-up professional portrait of a university administrator with a friendly expression, soft studio lighting, against a clean neutral background. High-quality corporate photography style in a light-mode academic environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeJOXrpEiLbtvcypQL9Cn9npz3fILWq09VInGabuvAKbln-GYmfC0EkEymlsH3wSosQpK31WweBriKLIyaqxD1q-RI_EOskzZ2O2H68NCdDgXFmV9DL7DizZvPb5O7_tucVZGGhK1R2mOH6fUeDKM6qej4CZbZDO4WgEZLHKjHS8UGUUdFcNR7qvLon0JBtxlo7hBVsH7ykGYfHKi-DYl7H41K9_CUZgHCxEHVW8uTEhXVpuzamF2g7A"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-lg bg-surface-container-low dark:bg-inverse-surface border-r border-outline-variant dark:border-outline w-[260px] z-40 mt-16">
+<div class="px-lg mb-xl">
+<div class="flex items-center gap-sm">
+<div class="bg-primary p-xs rounded-lg">
+<span class="material-symbols-outlined text-white" data-icon="school">school</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary leading-tight">Admin</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Academic Management</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-xs px-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Student Directory</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary dark:text-inverse-primary border-l-4 border-primary bg-primary-container/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Student Profiles</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="font-label-md text-label-md">Examination History</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-md text-label-md">Assessments</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-label-md text-label-md">Cumulative Records</span>
+</a>
+</nav>
+<div class="px-sm space-y-xs mt-auto">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-[260px] pt-24 px-container-margin pb-xl">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-xl">
+<div>
+<nav class="flex items-center gap-xs text-on-surface-variant mb-xs">
+<span class="font-label-sm text-label-sm">Student Profiles</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-label-sm text-label-sm text-primary">Student Detail</span>
+</nav>
+<div class="flex items-center gap-md">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Elena Rodriguez-Chen</h1>
+<span class="bg-primary-container/10 text-primary px-sm py-xs rounded-full font-label-sm text-label-sm border border-primary/20">ID: 2024-GP-8832</span>
+</div>
+</div>
+<button class="flex items-center gap-sm bg-primary text-white px-lg py-sm rounded-lg font-label-md text-label-md hover:shadow-lg transition-all active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="print">print</span>
+                Print Cumulative Record
+            </button>
+</div>
+<!-- Dashboard Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Profile Card -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<div class="bg-white rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="h-32 bg-primary-container/20 relative">
+<div class="absolute -bottom-12 left-1/2 -translate-x-1/2 border-4 border-white rounded-full h-24 w-24 overflow-hidden bg-surface shadow-md">
+<img class="h-full w-full object-cover" data-alt="A portrait of a young female university student with a bright, determined expression. She has dark hair and is wearing a simple blue sweater. The lighting is soft and professional, against a clean, minimalist studio background. The style is modern, sharp, and reflects a high-end academic SaaS aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARa-bBNVw6JWQpGPWwfBspO687Ac993pdX-3vumunITTALo71mYUyqKJDmAR866H5ZwJuLqsecXdyAIwWASj8IoycDArkTQ6UeQAL_9znYycADGTlBKvJoGzBXt1dxY_wfr7urkoZk8UsUziecBq5MSiQkQNKDp56UhfSiIXWq-w740Io2jS8AH8DBoxIEDpQvV_PG79A36xVLaAMLBJ3_k-Y14p0txQC_qo6oLCOIoFHdCvBhMvMKzg"/>
+</div>
+</div>
+<div class="pt-16 pb-lg px-lg text-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Elena Rodriguez-Chen</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">B.S. Psychology • 3rd Year</p>
+<div class="grid grid-cols-2 gap-sm mb-lg">
+<div class="p-sm bg-surface rounded-lg border border-outline-variant/50">
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold mb-[2px]">GPA</p>
+<p class="font-headline-md text-headline-md text-primary">3.92</p>
+</div>
+<div class="p-sm bg-surface rounded-lg border border-outline-variant/50">
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold mb-[2px]">Attendance</p>
+<p class="font-headline-md text-headline-md text-secondary">96%</p>
+</div>
+</div>
+<div class="space-y-md text-left">
+<div class="flex items-start gap-md">
+<div class="bg-surface-container rounded-lg p-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">call</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Phone</p>
+<p class="text-body-md font-body-md text-on-surface">+1 (555) 823-9941</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<div class="bg-surface-container rounded-lg p-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">mail</span>
+</div>
+<div class="break-all">
+<p class="text-label-sm font-label-sm text-on-surface-variant">Email</p>
+<p class="text-body-md font-body-md text-on-surface">e.rodriguez@university.edu</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<div class="bg-surface-container rounded-lg p-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Address</p>
+<p class="text-body-md font-body-md text-on-surface">742 Evergreen Terrace, Unit 4B, Metro City, 90210</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-md border-t border-outline-variant flex justify-center">
+<button class="text-primary font-label-md text-label-md flex items-center gap-xs hover:underline">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                            Edit Contact Info
+                        </button>
+</div>
+</div>
+<div class="bg-white rounded-xl border border-outline-variant p-lg shadow-sm">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-md">Counselor Notes</h4>
+<div class="space-y-md">
+<div class="p-md bg-surface-container/30 rounded-lg border-l-4 border-primary">
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-xs">Last Entry • Oct 12, 2023</p>
+<p class="text-body-md font-body-md italic text-on-surface">"Elena shows high aptitude in developmental psychology. Suggested her for the honors research program."</p>
+</div>
+<button class="w-full py-sm border border-outline border-dashed rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-colors">
+                            + Add New Note
+                        </button>
+</div>
+</div>
+</div>
+<!-- Right Column: Tabbed Content -->
+<div class="col-span-12 lg:col-span-8">
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden flex flex-col h-full">
+<!-- Tabs Navigation -->
+<div class="flex border-b border-outline-variant bg-surface-container-lowest">
+<button class="px-lg py-md relative font-label-md text-label-md text-primary transition-colors">
+                            Profile
+                            <div class="active-tab-indicator"></div>
+</button>
+<button class="px-lg py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface transition-colors">
+                            Exam History
+                        </button>
+<button class="px-lg py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface transition-colors">
+                            Assessments
+                        </button>
+<button class="px-lg py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface transition-colors">
+                            Records
+                        </button>
+</div>
+<!-- Tab Content: Profile (Active) -->
+<div class="p-lg space-y-xl">
+<!-- Personal Information -->
+<section>
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Personal Information</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="space-y-xs">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Date of Birth</p>
+<p class="text-body-lg font-body-lg text-on-surface">March 14, 2003</p>
+</div>
+<div class="space-y-xs">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Gender</p>
+<p class="text-body-lg font-body-lg text-on-surface">Female</p>
+</div>
+<div class="space-y-xs">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Nationality</p>
+<p class="text-body-lg font-body-lg text-on-surface">American-Filipino</p>
+</div>
+<div class="space-y-xs">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Blood Type</p>
+<p class="text-body-lg font-body-lg text-on-surface">O+</p>
+</div>
+<div class="space-y-xs md:col-span-2">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Languages</p>
+<p class="text-body-lg font-body-lg text-on-surface">English (Native), Tagalog (Fluent), Spanish (Basic)</p>
+</div>
+</div>
+</section>
+<div class="h-[1px] bg-outline-variant"></div>
+<!-- Academic Information -->
+<section>
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary" data-icon="school">school</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Academic Information</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant/30 space-y-md">
+<div class="flex justify-between items-start">
+<div class="space-y-xs">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Department</p>
+<p class="text-body-lg font-body-lg text-on-surface font-semibold">Social Sciences &amp; Humanities</p>
+</div>
+</div>
+<div class="space-y-xs">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Course</p>
+<p class="text-body-lg font-body-lg text-on-surface">Bachelor of Science in Psychology</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant/30 space-y-md">
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-xs">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Year Level</p>
+<p class="text-body-lg font-body-lg text-on-surface">3rd Year (Junior)</p>
+</div>
+<div class="space-y-xs">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Status</p>
+<div class="flex">
+<span class="bg-secondary/10 text-secondary px-sm py-[2px] rounded-full text-label-sm font-label-sm border border-secondary/20">Active Enrollment</span>
+</div>
+</div>
+</div>
+<div class="space-y-xs">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Advisor</p>
+<p class="text-body-lg font-body-lg text-on-surface">Dr. Samuel Richardson</p>
+</div>
+</div>
+</div>
+</section>
+<div class="h-[1px] bg-outline-variant"></div>
+<!-- Emergency Contact -->
+<section>
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary" data-icon="emergency">emergency</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Emergency Contact</h3>
+</div>
+<div class="bg-white border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row md:items-center justify-between gap-lg">
+<div class="flex items-center gap-md">
+<div class="h-12 w-12 rounded-full bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="family_history">family_history</span>
+</div>
+<div>
+<p class="text-body-lg font-body-lg text-on-surface font-semibold">Roberto Chen</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Relationship: Father</p>
+</div>
+</div>
+<div class="flex items-center gap-xl">
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Contact Number</p>
+<p class="text-body-md font-body-md text-on-surface">+1 (555) 902-1134</p>
+</div>
+<button class="p-sm rounded-full border border-outline-variant hover:bg-surface transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="call">call</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Micro-interaction script -->
+<script>
+        document.querySelectorAll('nav a, header button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const circle = document.createElement('span');
+                const diameter = Math.max(this.clientWidth, this.clientHeight);
+                const radius = diameter / 2;
+
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - (this.offsetLeft + radius)}px`;
+                circle.style.top = `${e.clientY - (this.offsetTop + radius)}px`;
+                circle.classList.add('ripple');
+
+                const ripple = this.getElementsByClassName('ripple')[0];
+                if (ripple) ripple.remove();
+
+                this.appendChild(circle);
+            });
+        });
+    </script>
+</body></html>

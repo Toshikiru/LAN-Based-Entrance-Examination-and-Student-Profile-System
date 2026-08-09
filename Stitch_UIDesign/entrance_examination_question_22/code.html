@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GuidancePulse | Examination Environment</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for Question Navigator */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e0e3e5;
+            border-radius: 10px;
+        }
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#d3e4fe",
+                        "outline-variant": "#c3c6d7",
+                        "primary-fixed": "#dbe1ff",
+                        "background": "#f7f9fb",
+                        "surface-dim": "#d8dadc",
+                        "outline": "#737686",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface-container-low": "#f2f4f6",
+                        "on-background": "#191c1e",
+                        "on-error": "#ffffff",
+                        "primary-container": "#2563eb",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "inverse-surface": "#2d3133",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "surface-container": "#eceef0",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "tertiary-container": "#5e6e85",
+                        "on-error-container": "#93000a",
+                        "primary": "#004ac6",
+                        "tertiary": "#46566c",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "secondary-container": "#6cf8bb",
+                        "surface-tint": "#0053db",
+                        "secondary": "#006c49",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#00714d",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#4edea3",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-primary-container": "#eeefff",
+                        "inverse-primary": "#b4c5ff",
+                        "on-tertiary-container": "#e9f0ff",
+                        "inverse-on-surface": "#eff1f3",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-fixed": "#002113",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "surface-bright": "#f7f9fb",
+                        "surface": "#f7f9fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "gutter": "20px",
+                        "md": "16px",
+                        "container-margin": "32px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation Header (Focused Experience) -->
+<header class="sticky top-0 z-50 flex flex-col w-full bg-surface-container-lowest shadow-sm">
+<div class="flex justify-between items-center px-lg py-sm">
+<!-- Identity & Status -->
+<div class="flex items-center gap-md">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-primary">GuidancePulse</span>
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Examination in Progress</span>
+</div>
+</div>
+</div>
+<!-- Countdown Timer -->
+<div class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
+<div class="flex items-baseline gap-xs">
+<span class="font-display-lg text-display-lg text-on-surface tabular-nums" id="timer">01:42:58</span>
+</div>
+<span class="font-label-sm text-outline uppercase tracking-widest -mt-1">Remaining Time</span>
+</div>
+<!-- Student Profile & Save State -->
+<div class="flex items-center gap-lg">
+<div class="text-right hidden md:block">
+<p class="font-label-md text-on-surface">Marcello V. Rossi</p>
+<p class="font-label-sm text-outline-variant">ID: TPC-2024-8891</p>
+</div>
+<div class="flex items-center gap-sm bg-surface-container-low px-md py-xs rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]">cloud_done</span>
+<span class="font-label-sm text-secondary">Auto-saved</span>
+</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-1 bg-surface-container">
+<div class="h-full bg-primary transition-all duration-500 ease-out" style="width: 32%;"></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Side: Question Navigator -->
+<aside class="w-[320px] bg-surface-container-lowest border-r border-outline-variant flex flex-col hidden lg:flex">
+<div class="p-md border-b border-outline-variant">
+<h3 class="font-label-md text-on-surface-variant flex items-center gap-sm">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+                    QUESTION NAVIGATOR
+                </h3>
+</div>
+<div class="flex-1 overflow-y-auto p-md custom-scrollbar">
+<div class="grid grid-cols-5 gap-sm">
+<!-- Numbers 1-50 Generator Placeholder -->
+<!-- Active/Current -->
+<button class="w-full aspect-square rounded-lg border-2 border-primary bg-primary-fixed text-primary font-bold flex items-center justify-center transition-all">16</button>
+<!-- Answered -->
+<button class="w-full aspect-square rounded-lg bg-surface-container-high text-on-surface-variant flex items-center justify-center hover:bg-surface-container-highest transition-all">1</button>
+<button class="w-full aspect-square rounded-lg bg-surface-container-high text-on-surface-variant flex items-center justify-center">2</button>
+<button class="w-full aspect-square rounded-lg bg-surface-container-high text-on-surface-variant flex items-center justify-center">3</button>
+<!-- Flagged -->
+<button class="w-full aspect-square rounded-lg border border-error bg-error-container text-on-error-container flex flex-col items-center justify-center">
+<span class="text-[12px] font-bold">4</span>
+<span class="material-symbols-outlined text-[14px] fill-icon">flag</span>
+</button>
+<!-- Loop for others -->
+<script>
+                        const gridContainer = document.querySelector('.grid');
+                        for(let i = 5; i <= 50; i++) {
+                            if(i === 16) continue; // Already rendered current
+                            const btn = document.createElement('button');
+                            btn.className = "w-full aspect-square rounded-lg border border-outline-variant text-outline flex items-center justify-center hover:border-primary hover:text-primary transition-all";
+                            if (i < 16 && i !== 4) {
+                                btn.className = "w-full aspect-square rounded-lg bg-surface-container-high text-on-surface-variant flex items-center justify-center hover:bg-surface-container-highest transition-all";
+                            }
+                            btn.innerText = i;
+                            gridContainer.appendChild(btn);
+                        }
+                    </script>
+</div>
+</div>
+<!-- Legend -->
+<div class="p-md border-t border-outline-variant bg-surface-container-low grid grid-cols-2 gap-y-sm gap-x-md">
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-sm bg-surface-container-high border border-outline-variant"></span>
+<span class="text-[11px] font-label-sm text-outline">Answered</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<span class="text-[11px] font-label-sm text-outline">Current</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-sm bg-error-container border border-error"></span>
+<span class="text-[11px] font-label-sm text-outline">Flagged</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-sm border border-outline-variant"></span>
+<span class="text-[11px] font-label-sm text-outline">Unvisited</span>
+</div>
+</div>
+</aside>
+<!-- Center: Question Card Container -->
+<div class="flex-1 overflow-y-auto bg-surface flex flex-col items-center py-xl px-lg">
+<div class="max-w-[800px] w-full space-y-lg">
+<!-- Breadcrumb / Meta -->
+<div class="flex justify-between items-center">
+<span class="px-md py-xs bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-[12px] font-bold uppercase tracking-wider">SECTION B: QUANTITATIVE REASONING</span>
+<button class="flex items-center gap-xs text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">flag</span>
+<span class="font-label-sm">Flag for Review</span>
+</button>
+</div>
+<!-- Question Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-xl space-y-xl hover:shadow-md transition-shadow">
+<div class="space-y-md">
+<span class="text-primary font-bold font-label-md">Question 16 of 50</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface leading-tight">
+                            A company's revenue increased by 25% in the first quarter and then decreased by 20% in the second quarter. What is the net percentage change in revenue over the two quarters?
+                        </h1>
+</div>
+<!-- Options -->
+<div class="space-y-md">
+<!-- Option A -->
+<label class="group relative flex items-center p-lg border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low hover:border-primary transition-all active:scale-[0.99]">
+<input class="hidden peer" name="exam_option" type="radio"/>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center transition-all mr-md">
+<div class="w-2 h-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"></div>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface peer-checked:text-primary transition-colors">A. 5% Increase</span>
+</label>
+<!-- Option B (Selected State Example) -->
+<label class="group relative flex items-center p-lg border-2 border-primary bg-primary-fixed/30 rounded-lg cursor-pointer active:scale-[0.99]">
+<input checked="" class="hidden peer" name="exam_option" type="radio"/>
+<div class="w-6 h-6 rounded-full border-2 border-primary bg-primary flex items-center justify-center mr-md">
+<div class="w-2 h-2 rounded-full bg-white"></div>
+</div>
+<span class="font-body-lg text-body-lg text-primary font-semibold">B. 0% (No Change)</span>
+</label>
+<!-- Option C -->
+<label class="group relative flex items-center p-lg border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low hover:border-primary transition-all active:scale-[0.99]">
+<input class="hidden peer" name="exam_option" type="radio"/>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant peer-checked:border-primary flex items-center justify-center mr-md">
+<div class="w-2 h-2 rounded-full bg-white opacity-0"></div>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">C. 4.5% Increase</span>
+</label>
+<!-- Option D -->
+<label class="group relative flex items-center p-lg border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low hover:border-primary transition-all active:scale-[0.99]">
+<input class="hidden peer" name="exam_option" type="radio"/>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant peer-checked:border-primary flex items-center justify-center mr-md">
+<div class="w-2 h-2 rounded-full bg-white opacity-0"></div>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">D. 2% Decrease</span>
+</label>
+</div>
+<!-- Helpful Attachment/Image if needed -->
+<div class="pt-lg border-t border-outline-variant/30">
+<p class="font-label-sm text-outline flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                            Marks: 2.0 | Negative Marking: -0.5
+                        </p>
+</div>
+</div>
+<!-- Guidance/Tips -->
+<div class="bg-surface-container-high/50 p-md rounded-lg flex gap-md items-start">
+<span class="material-symbols-outlined text-primary text-[24px]">lightbulb</span>
+<p class="text-on-surface-variant font-label-md">
+                        Tip: You can use the navigator on the left to quickly jump between questions. Your progress is saved automatically every time you select an option.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant px-lg py-md z-50">
+<div class="max-w-[1200px] mx-auto flex justify-between items-center">
+<button class="flex items-center gap-xs px-lg py-md text-primary font-bold hover:bg-surface-container-low rounded-lg transition-all active:scale-95 group">
+<span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                PREVIOUS
+            </button>
+<div class="flex items-center gap-md">
+<button class="px-xl py-md bg-surface-container-highest text-on-surface-variant font-bold rounded-lg hover:bg-surface-dim transition-all active:scale-95">
+                    CLEAR SELECTION
+                </button>
+<button class="flex items-center gap-xs px-xl py-md bg-primary text-white font-bold rounded-lg shadow-sm hover:shadow-lg hover:opacity-90 transition-all active:scale-95 group">
+                    NEXT QUESTION
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<!-- This button only appears on last question (mocked as hidden here) -->
+<button class="hidden flex items-center gap-xs px-xl py-md bg-secondary text-white font-bold rounded-lg shadow-md hover:opacity-90 transition-all active:scale-95">
+                    SUBMIT EXAMINATION
+                    <span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</footer>
+<!-- Fullscreen Guard Micro-interaction Overlay (Simulated) -->
+<div class="fixed inset-0 bg-inverse-surface/90 z-[100] hidden flex flex-col items-center justify-center text-center p-xl" id="fullscreen-overlay">
+<span class="material-symbols-outlined text-white text-[80px] mb-lg animate-bounce">fullscreen_exit</span>
+<h2 class="text-white font-headline-lg mb-md">Stay in Fullscreen Mode</h2>
+<p class="text-outline-variant max-w-md mb-xl">Exiting fullscreen mode or switching tabs will be logged as a potential security violation. Please continue your examination.</p>
+<button class="px-xl py-md bg-primary text-white rounded-full font-bold" onclick="toggleFullscreenWarning()">RETURN TO TEST</button>
+</div>
+<script>
+        // Simple timer logic
+        let time = 3600 * 1 + 60 * 42 + 58; // 1:42:58
+        const timerElement = document.getElementById('timer');
+
+        setInterval(() => {
+            time--;
+            const hours = Math.floor(time / 3600);
+            const minutes = Math.floor((time % 3600) / 60);
+            const seconds = time % 60;
+            timerElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if(time < 300) { // Less than 5 mins
+                timerElement.classList.remove('text-on-surface');
+                timerElement.classList.add('text-error', 'animate-pulse');
+            }
+        }, 1000);
+
+        function toggleFullscreenWarning() {
+            const overlay = document.getElementById('fullscreen-overlay');
+            overlay.classList.add('hidden');
+        }
+
+        // Simulate anti-cheat tab visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                console.warn('Tab switched. Security violation potential.');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GuidancePulse - Student Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f7f9fb",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-dim": "#d8dadc",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary": "#006c49",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-tertiary-container": "#e9f0ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-secondary-container": "#00714d",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-low": "#f2f4f6",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#6cf8bb",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-surface-variant": "#434655",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#2563eb",
+                        "background": "#f7f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "outline": "#737686",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-container": "#eeefff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "tertiary-fixed": "#d3e4fe",
+                        "primary": "#004ac6",
+                        "surface-tint": "#0053db",
+                        "surface-container": "#eceef0",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary-fixed": "#002113",
+                        "tertiary-container": "#5e6e85",
+                        "tertiary": "#46566c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "container-margin": "32px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .modal-overlay-animation {
+            animation: fadeIn 0.3s ease-out;
+        }
+        .modal-content-animation {
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm">
+<div class="flex items-center gap-md">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">GuidancePulse</span>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-xl pr-md py-xs rounded-lg border border-outline-variant bg-surface-container-low text-label-md w-64 focus:ring-2 focus:ring-primary focus:outline-none transition-all" placeholder="Search students..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a professional academic administrator in a light-filled modern office, wearing a professional charcoal blazer. The lighting is soft and natural, emphasizing a trustworthy and organized persona. The background is a blurred minimalist academic environment with hints of blue and slate gray colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvepalSCUzk6QEpdV4aRhyxFYdh4Ztl9kaBvXYv0HTwa-bu4Guayq953K2Xm1qlXHibofU_i-OEBg4Y5vQjQkydYmAueRfsSt4NKaU8PI_fTKo39sc7hXarurWdB8xOEHsL-eedliw1iuiBiW_o6ryiKQ5WW-Tq7-U2HpHWKsN7WpRsTMMGnXCMSx_3zkx2REu1GsFE4sM4dVYLJ_vR3JujBqEUJS4TQPzpO9s2H1guUsE7OiHNHBcwg"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[260px] flex flex-col py-lg bg-surface-container-low dark:bg-inverse-surface border-r border-outline-variant dark:border-outline z-40 pt-20">
+<div class="px-lg mb-xl">
+<h2 class="font-headline-md text-headline-md text-primary">GuidancePulse</h2>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Academic Management</p>
+</div>
+<nav class="flex-1 flex flex-col px-md gap-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary dark:text-inverse-primary border-l-4 border-primary bg-primary-container/10 font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Student Directory</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Student Profiles</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="font-label-md text-label-md">Examination History</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-md text-label-md">Assessments</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-label-md text-label-md">Cumulative Records</span>
+</a>
+</nav>
+<div class="px-md mt-auto pt-lg border-t border-outline-variant/30 flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[260px] pt-20 p-xl min-h-screen">
+<div class="max-w-6xl mx-auto">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Student Directory</h1>
+<p class="text-body-md text-on-surface-variant">Manage and overview student academic records.</p>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md flex items-center gap-sm hover:brightness-110 active:scale-95 transition-all shadow-md shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                    Add Student
+                </button>
+</div>
+<!-- Bento Grid of Students (Mock Data for Background) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Mock Student Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer" onclick="openModal()">
+<div class="flex items-center gap-md mb-md">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A profile headshot of a teenage male student with friendly features, wearing a navy school polo. High-end lighting with soft blue and white tones, creating a clean academic aesthetic. Focused and sharp photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB93VWkAYcecyqNu2Uzzy1Qx_FsHQ5wymlnZ_pUpqEu715-jH1pUwRrbPPTx_ojoP2B7yFNdFTUpxgywSz9crIuEeMpSz1rru2P_5CAO-xzT-30ETITtwHnsccYFPh9Y7tNAXFo7LO86En7kNonLzJnFmd14iKVTigsUaLyfKVz1lr7nNDw-d0drL8BBNtg6CYwmpVrwfKPKYSs8kJxm9-JfQgAO4X09WrqkksYd7aLQwMW_CzBiKrVMg"/>
+</div>
+<div>
+<h3 class="font-headline-md text-body-md font-bold">Liam Henderson</h3>
+<span class="bg-secondary/10 text-secondary px-sm py-xs rounded text-[10px] font-bold uppercase tracking-wider">Honor Roll</span>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-label-sm">
+<span class="text-on-surface-variant">GPA</span>
+<span class="font-bold">3.92</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full">
+<div class="bg-primary w-[92%] h-full rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Repeating cards for layout density -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm opacity-60">
+<div class="flex items-center gap-md mb-md">
+<div class="w-12 h-12 rounded-full bg-surface-dim"></div>
+<div class="h-4 bg-surface-dim w-24 rounded"></div>
+</div>
+<div class="h-2 bg-surface-dim w-full rounded"></div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm opacity-60">
+<div class="flex items-center gap-md mb-md">
+<div class="w-12 h-12 rounded-full bg-surface-dim"></div>
+<div class="h-4 bg-surface-dim w-24 rounded"></div>
+</div>
+<div class="h-2 bg-surface-dim w-full rounded"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center p-md bg-on-surface/40 glass-effect modal-overlay-animation" id="modal-overlay">
+<!-- Modal Content -->
+<div class="bg-surface-container-lowest w-full max-w-[800px] rounded-xl shadow-2xl border border-outline-variant overflow-hidden modal-content-animation">
+<!-- Modal Header -->
+<div class="flex justify-between items-center px-lg py-md border-b border-outline-variant/30">
+<h2 class="font-headline-md text-headline-md text-on-surface">Student Quick Overview</h2>
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors group" onclick="closeModal()">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-error transition-colors" data-icon="close">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-lg grid grid-cols-1 md:grid-cols-2 gap-xl">
+<!-- Left Column: Avatar & Basic Stats -->
+<div class="flex flex-col items-center md:items-start text-center md:text-left">
+<div class="relative mb-lg">
+<div class="w-32 h-32 rounded-full border-4 border-primary/10 p-xs">
+<img class="w-full h-full object-cover rounded-full" data-alt="A portrait of a male student with short brown hair, wearing a clean, modern white oxford shirt. The background is a soft, out-of-focus academic hallway with slate blue lockers. The lighting is crisp and professional, highlighting a studious and friendly expression. The overall style is high-definition and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB46R6WQ6u06qghDTXVWWR2IHWnguTwJaGaoQ9nLMNVAyp-Lyqv139iXPqOqT1_HcN38KKpu-bmZvvJkPCYOFb7FBFgCBKHoQ1fAHsVQuJbPwI0aBKzBfGnEukZup3kJfogHGEp-u1QEjVnJksvrxi4_5QsUM6ZzXFRvAW9o_LWzdXe3-JahoIKiODT0w_6ZhJrVSQdWrWFYcpHIySb5nxnzGN-d9FhGbAmtanG75d-jtbsC4ddQVlYw"/>
+</div>
+<div class="absolute bottom-1 right-1 w-8 h-8 bg-secondary rounded-full border-4 border-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary text-[16px] font-bold" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="mb-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Liam Henderson</h3>
+<p class="text-on-surface-variant font-label-md flex items-center justify-center md:justify-start gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="school">school</span>
+                            Grade 12 • Science Stream
+                        </p>
+</div>
+<div class="w-full space-y-md">
+<div class="p-md rounded-lg bg-surface border border-outline-variant/50">
+<div class="flex justify-between items-center mb-xs">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">Academic Standing</span>
+<span class="text-secondary font-bold text-label-md">Excellent</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-secondary w-[88%] h-full rounded-full"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="p-sm bg-primary-container/5 rounded-lg border border-primary/10">
+<p class="text-label-sm text-on-surface-variant">Attendance</p>
+<p class="text-headline-md text-primary font-bold">96%</p>
+</div>
+<div class="p-sm bg-tertiary-container/5 rounded-lg border border-tertiary/10">
+<p class="text-label-sm text-on-surface-variant">Rank</p>
+<p class="text-headline-md text-tertiary font-bold">#4/120</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Quick Stats & Notes -->
+<div class="space-y-lg">
+<!-- Quick Stats Cards -->
+<div class="space-y-sm">
+<h4 class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest border-b border-outline-variant/30 pb-xs mb-md">Quick Analytics</h4>
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-lg border border-outline-variant/20 hover:border-primary/30 transition-all">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="event_available">event_available</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Last Exam Taken</p>
+<p class="font-bold text-on-surface">Advanced Calculus</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-label-md font-bold text-secondary">A+</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">2 days ago</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-lg border border-outline-variant/20 hover:border-primary/30 transition-all">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="leaderboard">leaderboard</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Total Points</p>
+<p class="font-bold text-on-surface">12,450 XP</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-label-md font-bold text-primary">Top 1%</p>
+</div>
+</div>
+</div>
+<!-- Counselor Note -->
+<div>
+<h4 class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest border-b border-outline-variant/30 pb-xs mb-md">Counselor Notes</h4>
+<div class="relative p-lg bg-surface border border-outline-variant rounded-xl italic text-on-surface-variant text-body-md">
+<span class="material-symbols-outlined absolute -top-3 -left-1 text-primary-container/20 text-4xl" data-icon="format_quote">format_quote</span>
+                            "Liam has shown consistent growth in peer leadership during group assessments. His analytical approach to complex problem-solving is exceptional for his level..."
+                        </div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="bg-surface-container px-lg py-md flex flex-col sm:flex-row justify-end items-center gap-md">
+<button class="w-full sm:w-auto px-lg py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg font-label-md text-label-md" onclick="closeModal()">
+                    Close
+                </button>
+<button class="w-full sm:w-auto px-lg py-sm bg-primary text-on-primary rounded-lg font-label-md text-label-md shadow-lg shadow-primary/25 hover:translate-y-[-1px] active:translate-y-[0px] active:scale-95 transition-all">
+                    View Full Profile
+                </button>
+</div>
+</div>
+</div>
+<script>
+        function closeModal() {
+            const overlay = document.getElementById('modal-overlay');
+            const content = overlay.querySelector('.modal-content-animation');
+            
+            // Apply closing animations
+            content.style.opacity = '0';
+            content.style.transform = 'translateY(20px) scale(0.98)';
+            content.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+            overlay.style.opacity = '0';
+            overlay.style.transition = 'opacity 0.3s ease-out';
+            
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+            }, 300);
+        }
+
+        function openModal() {
+            const overlay = document.getElementById('modal-overlay');
+            overlay.classList.remove('hidden');
+            overlay.style.display = 'flex';
+            overlay.style.opacity = '1';
+            
+            const content = overlay.querySelector('.modal-content-animation');
+            content.style.opacity = '1';
+            content.style.transform = 'translateY(0) scale(1)';
+        }
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Close on backdrop click
+        document.getElementById('modal-overlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modal-overlay')) closeModal();
+        });
+    </script>
+</body></html>
