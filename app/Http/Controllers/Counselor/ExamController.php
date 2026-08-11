@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Counselor;
 
 use App\Enums\ExamCategory;
+use App\Enums\ExamSessionStatus;
 use App\Enums\ExamStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Counselor\StoreExamRequest;
@@ -10,12 +11,17 @@ use App\Http\Requests\Counselor\UpdateExamRequest;
 use App\Models\AuditLog;
 use App\Models\Department;
 use App\Models\Exam;
+use App\Services\ExamPublishingService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ExamController extends Controller
 {
+    public function __construct(protected ExamPublishingService $publishing)
+    {
+    }
+
     /**
      * Year-level options an exam can target.
      */
@@ -99,7 +105,8 @@ class ExamController extends Controller
             'category' => ExamCategory::Entrance,
             'department_id' => $data['department_id'] ?? null,
             'year_level' => $data['year_level'] ?? null,
-            'duration_minutes' => $data['duration_minutes'],
+            'passing_score' => $data['passing_score'],
+            'duration_minutes' => $data['duration_minutes'] ?? null,
             'status' => ExamStatus::Draft,
             'created_by' => auth()->id(),
             'starts_at' => $data['starts_at'] ?? null,
@@ -137,7 +144,8 @@ class ExamController extends Controller
             'description' => $data['description'] ?? null,
             'department_id' => $data['department_id'] ?? null,
             'year_level' => $data['year_level'] ?? null,
-            'duration_minutes' => $data['duration_minutes'],
+            'passing_score' => $data['passing_score'],
+            'duration_minutes' => $data['duration_minutes'] ?? null,
             'starts_at' => $data['starts_at'] ?? null,
             'ends_at' => $data['ends_at'] ?? null,
         ]);
@@ -154,6 +162,16 @@ class ExamController extends Controller
      */
     public function destroy(Exam $exam): RedirectResponse
     {
+        $hasActiveSessions = $exam->examSessions()
+            ->whereIn('status', [ExamSessionStatus::InProgress, ExamSessionStatus::Flagged])
+            ->exists();
+
+        if ($hasActiveSessions) {
+            return redirect()
+                ->route('counselor.exams.index')
+                ->with('error', "\"{$exam->title}\" can't be deleted while a student has an active session on it. Wait for them to finish, or terminate their session from Live Monitoring first.");
+        }
+
         $title = $exam->title;
 
         $exam->delete();
@@ -170,13 +188,19 @@ class ExamController extends Controller
      */
     public function activate(Exam $exam): RedirectResponse
     {
-        $exam->update(['status' => ExamStatus::Published]);
+        if ($error = $this->publishing->publishError($exam)) {
+            return redirect()
+                ->route('counselor.exams.builder', $exam)
+                ->with('error', "\"{$exam->title}\" can't be activated yet: {$error}");
+        }
+
+        $this->publishing->publish($exam);
 
         $this->logAudit('exam.activated', $exam, "Activated examination \"{$exam->title}\".");
 
         return redirect()
             ->route('counselor.exams.index')
-            ->with('status', "\"{$exam->title}\" is now active.");
+            ->with('status', "\"{$exam->title}\" is now active. Access code: {$exam->access_code}");
     }
 
     /**

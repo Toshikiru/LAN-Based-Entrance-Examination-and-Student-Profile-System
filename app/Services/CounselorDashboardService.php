@@ -34,8 +34,13 @@ class CounselorDashboardService
             'completed_exams' => ExamSession::query()
                 ->where('status', ExamSessionStatus::Completed)
                 ->count(),
+            // Matches liveSessions()'s whereHas('exam') guard below — otherwise this
+            // count could include a session whose exam was deleted out from under
+            // it, showing "N active sessions" in the header while the table (which
+            // excludes those orphans to avoid dereferencing a null exam) shows fewer.
             'live_session_count' => ExamSession::query()
                 ->where('status', ExamSessionStatus::InProgress)
+                ->whereHas('exam')
                 ->count(),
         ];
     }
@@ -79,6 +84,10 @@ class CounselorDashboardService
             ->latest('started_at')
             ->limit($limit)
             ->get()
+            // whereHas('exam') above excludes orphaned sessions at query time, but the
+            // exam can still be soft-deleted between that check and this eager-load
+            // fetch — guard against the resulting null here rather than crash.
+            ->filter(fn (ExamSession $session) => $session->exam !== null)
             ->map(function (ExamSession $session) {
                 $totalQuestions = max(1, $session->exam->exam_questions_count);
 

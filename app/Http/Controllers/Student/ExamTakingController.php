@@ -27,6 +27,9 @@ class ExamTakingController extends Controller
     public function join(): View
     {
         $sessions = ExamSession::where('student_id', auth()->id())
+            // A session's exam can be soft-deleted out from under it — the view
+            // dereferences $session->exam unconditionally, so exclude orphans here.
+            ->whereHas('exam')
             ->with('exam')
             ->latest()
             ->get();
@@ -90,7 +93,7 @@ class ExamTakingController extends Controller
                 $session->update([
                     'status' => ExamSessionStatus::InProgress,
                     'started_at' => $now,
-                    'time_remaining_seconds' => $exam->duration_minutes * 60,
+                    'time_remaining_seconds' => $exam->duration_minutes ? $exam->duration_minutes * 60 : null,
                 ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 // Backstop for the `exam_sessions_one_active_per_student`
@@ -129,8 +132,10 @@ class ExamTakingController extends Controller
             return redirect()->route('student.exams.result', $exam);
         }
 
-        // Time check — auto-submit if the window has elapsed.
-        if ($this->remainingSeconds($session, $exam) <= 0) {
+        // Time check — auto-submit if the window has elapsed. No duration set
+        // means this exam has no time limit, so skip the check entirely.
+        $remaining = $this->remainingSeconds($session, $exam);
+        if ($remaining !== null && $remaining <= 0) {
             $this->finalize($session, $exam, autoSubmitted: true);
 
             return redirect()->route('student.exams.result', $exam);
@@ -156,7 +161,7 @@ class ExamTakingController extends Controller
             'current' => $current,
             'options' => $options,
             'index' => $index,
-            'remaining' => $this->remainingSeconds($session, $exam),
+            'remaining' => $remaining,
         ]);
     }
 
@@ -292,15 +297,28 @@ class ExamTakingController extends Controller
         return $questions->values();
     }
 
-    protected function remainingSeconds(ExamSession $session, Exam $exam): int
+    protected function remainingSeconds(ExamSession $session, Exam $exam): ?int
     {
+        // No duration configured on the exam means no time limit at all.
+        if ($exam->duration_minutes === null) {
+            return null;
+        }
+
         if (! $session->started_at) {
             return $exam->duration_minutes * 60;
         }
 
-        $elapsed = now()->diffInSeconds($session->started_at);
+        // Use the duration frozen on the session at start time, not the exam's
+        // current duration_minutes — otherwise editing an exam's duration while
+        // a student is mid-session changes their countdown out from under them.
+        $totalSeconds = $session->time_remaining_seconds ?? ($exam->duration_minutes * 60);
+        // diffInSeconds() is signed (started_at - now), not absolute — pass the
+        // instant to diff against explicitly with absolute:true, or a session
+        // that's been running a while ends up with a *negative* elapsed value,
+        // which makes remaining time grow instead of count down.
+        $elapsed = $session->started_at->diffInSeconds(now(), absolute: true);
 
-        return max(0, ($exam->duration_minutes * 60) - $elapsed);
+        return max(0, $totalSeconds - $elapsed);
     }
 
     /**

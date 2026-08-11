@@ -3,9 +3,12 @@
 use App\Http\Controllers\Student\DashboardController;
 use App\Http\Controllers\Student\ExamTakingController;
 use App\Http\Controllers\Student\ResultController;
+use App\Http\Controllers\Student\SearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::get('/results', [ResultController::class, 'index'])->name('results.index');
 

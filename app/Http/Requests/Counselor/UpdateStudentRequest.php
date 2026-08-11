@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Counselor;
 
+use App\Models\YearLevel;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -23,7 +24,7 @@ class UpdateStudentRequest extends FormRequest
             'password' => ['nullable', 'string', 'min:8'],
             'status' => ['required', 'in:active,inactive,suspended'],
             'department_id' => ['nullable', 'exists:departments,id'],
-            'year_level' => ['nullable', 'string', 'max:50'],
+            'year_level' => ['nullable', 'string', Rule::in(YearLevel::where('is_active', true)->pluck('name'))],
             'section' => ['nullable', 'string', 'max:50'],
             'enrollment_status' => ['nullable', 'string', 'in:enrolled,on_leave,graduated,dropped'],
         ];

@@ -43,7 +43,11 @@
         </div>
         <form method="GET" action="{{ route('counselor.exams.monitor', $exam) }}" class="flex items-center gap-sm">
             <x-ui.search-bar name="search" :value="$search ?? ''" placeholder="Search students..." rounded="lg" class="min-w-[240px]" />
-            @if ($search)
+            <x-ui.select name="status" placeholder="All Students" onchange="this.form.submit()">
+                <option value="active" @selected(($statusFilter ?? null) === 'active')>Active</option>
+                <option value="inactive" @selected(($statusFilter ?? null) === 'inactive')>Not Active</option>
+            </x-ui.select>
+            @if ($search || $statusFilter)
                 <a href="{{ route('counselor.exams.monitor', $exam) }}" class="text-label-sm text-outline hover:text-primary transition-colors">Clear</a>
             @endif
         </form>
@@ -60,12 +64,17 @@
         (function () {
             const base = '{{ route('counselor.exams.monitor.data', $exam) }}';
             const search = @json($search ?? '');
+            const status = @json($statusFilter ?? '');
             const body = document.getElementById('monitor-body');
             const stamp = document.getElementById('monitor-updated');
 
             async function poll() {
                 try {
-                    const url = base + (search ? ('?search=' + encodeURIComponent(search)) : '');
+                    const params = new URLSearchParams();
+                    if (search) params.set('search', search);
+                    if (status) params.set('status', status);
+                    const qs = params.toString();
+                    const url = base + (qs ? ('?' + qs) : '');
                     const res = await fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
                     if (res.ok) {
                         body.innerHTML = await res.text();

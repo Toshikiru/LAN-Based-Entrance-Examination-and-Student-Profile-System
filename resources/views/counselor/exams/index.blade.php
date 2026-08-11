@@ -22,6 +22,9 @@
     @if (session('status'))
         <x-ui.alert variant="success" dismissible class="mb-lg">{{ session('status') }}</x-ui.alert>
     @endif
+    @if (session('error'))
+        <x-ui.alert variant="error" dismissible class="mb-lg">{{ session('error') }}</x-ui.alert>
+    @endif
 
     {{-- Summary Cards --}}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl">
@@ -102,7 +105,7 @@
                             <span class="text-label-md text-outline italic">Not set</span>
                         @endif
                     </td>
-                    <td class="px-lg py-md font-label-md text-label-md text-on-surface">{{ $exam->duration_minutes }} min</td>
+                    <td class="px-lg py-md font-label-md text-label-md text-on-surface">{{ $exam->duration_minutes ? $exam->duration_minutes . ' min' : 'No limit' }}</td>
                     <td class="px-lg py-md">
                         <x-ui.badge :variant="$statusVariant" dot>{{ ucfirst($exam->status->value) }}</x-ui.badge>
                     </td>

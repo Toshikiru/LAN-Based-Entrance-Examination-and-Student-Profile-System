@@ -1,0 +1,110 @@
+<mxfile host="app.diagrams.net" agent="claude-code">
+  <diagram name="Sequence - One Active Session" id="seqOneActiveSession">
+    <mxGraphModel dx="1420" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="950" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pS" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#1f5c29;" value="Student" vertex="1">
+          <mxGeometry height="45" width="160" x="30" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pETC" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#7a5c00;" value="ExamTakingController" vertex="1">
+          <mxGeometry height="45" width="180" x="290" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pApp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf2fb;strokeColor=#1a5fb4;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#12395e;" value="Application check" vertex="1">
+          <mxGeometry height="45" width="160" x="570" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pDB" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#333333;" value="exam_sessions table" vertex="1">
+          <mxGeometry height="45" width="160" x="790" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="llS" edge="1" parent="1" style="html=1;strokeColor=#999999;strokeWidth=1.3;dashed=1;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="105" as="sourcePoint" />
+            <mxPoint x="110" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llETC" edge="1" parent="1" style="html=1;strokeColor=#999999;strokeWidth=1.3;dashed=1;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="105" as="sourcePoint" />
+            <mxPoint x="380" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llApp" edge="1" parent="1" style="html=1;strokeColor=#999999;strokeWidth=1.3;dashed=1;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="105" as="sourcePoint" />
+            <mxPoint x="650" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llDB" edge="1" parent="1" style="html=1;strokeColor=#999999;strokeWidth=1.3;dashed=1;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="865" y="105" as="sourcePoint" />
+            <mxPoint x="865" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="banner1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaf2fb;strokeColor=#1a5fb4;strokeWidth=1;fontSize=11;fontStyle=1;fontColor=#12395e;align=left;spacingLeft=8;" value="Application-level check" vertex="1">
+          <mxGeometry height="26" width="900" x="30" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" edge="1" parent="1" style="html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10.5;fontColor=#333333;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;" value="enter access code for Exam B">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="185" as="sourcePoint" />
+            <mxPoint x="380" y="185" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2" edge="1" parent="1" style="html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=10.5;fontColor=#333333;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;" value="check for other active session">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="225" as="sourcePoint" />
+            <mxPoint x="650" y="225" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3" edge="1" parent="1" style="html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=9.5;fontColor=#333333;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;" value="query: student_id = S AND status IN (in_progress, flagged)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="265" as="sourcePoint" />
+            <mxPoint x="865" y="265" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m4" edge="1" parent="1" style="html=1;strokeColor=#666666;strokeWidth=1.3;dashed=1;endArrow=open;endFill=0;fontSize=10;fontColor=#666666;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;" value="existing active session found (Exam A)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="865" y="305" as="sourcePoint" />
+            <mxPoint x="650" y="305" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m5" edge="1" parent="1" style="html=1;strokeColor=#666666;strokeWidth=1.3;dashed=1;endArrow=open;endFill=0;fontSize=10;fontColor=#666666;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;" value="reject with message naming Exam A">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="345" as="sourcePoint" />
+            <mxPoint x="380" y="345" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m6" edge="1" parent="1" style="html=1;strokeColor=#666666;strokeWidth=1.3;dashed=1;endArrow=open;endFill=0;fontSize=10;fontColor=#666666;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;" value="&quot;You have an active session on Exam A&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="385" as="sourcePoint" />
+            <mxPoint x="110" y="385" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="banner2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=1;fontSize=10.5;fontStyle=1;fontColor=#7a5c00;align=left;spacingLeft=8;" value="Database-level backstop (defends against a race condition, e.g. two simultaneous tabs)" vertex="1">
+          <mxGeometry height="26" width="900" x="30" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="m7" edge="1" parent="1" style="html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=9.5;fontColor=#333333;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;" value="INSERT new session; active_session_lock = student_id (generated column)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="490" as="sourcePoint" />
+            <mxPoint x="865" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m8" edge="1" parent="1" style="html=1;strokeColor=#666666;strokeWidth=1.3;dashed=1;endArrow=open;endFill=0;fontSize=9.5;fontColor=#666666;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;" value="UNIQUE constraint violation (exam_sessions_one_active_per_student)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="865" y="530" as="sourcePoint" />
+            <mxPoint x="380" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m9" edge="1" parent="1" style="html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=9.5;fontColor=#333333;labelBackgroundColor=#ffffff;rounded=1;" value="catch QueryException; show same friendly error">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="565" />
+              <mxPoint x="480" y="600" />
+            </Array>
+            <mxPoint x="380" y="565" as="sourcePoint" />
+            <mxPoint x="380" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

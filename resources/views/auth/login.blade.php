@@ -1,6 +1,35 @@
 <x-layouts.guest :title="$branding['system_name'] . ' | ' . $branding['school_name'] . ' Login'">
 
-<div x-data="{ roleHint: @js(old('role', 'super_admin')) }">
+<style>
+    /* Mirrors the landing page's page-to-page transition (see
+       resources/views/landing.blade.php) so the two feel like one paired
+       animation: landing exits upward into this page entering from below,
+       and this "Back to landing" link exits downward in reverse. */
+    @keyframes tpc-page-enter {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes tpc-page-exit-down {
+        to { opacity: 0; transform: translateY(16px); }
+    }
+    .tpc-page-enter { animation: tpc-page-enter 0.4s ease-out; }
+    .tpc-page-exit-down { animation: tpc-page-exit-down 0.25s ease-in forwards; }
+    @media (prefers-reduced-motion: reduce) {
+        .tpc-page-enter, .tpc-page-exit-down { animation: none; }
+    }
+</style>
+
+<div x-data="{ roleHint: @js(old('role', 'super_admin')) }" class="tpc-page-enter">
+
+    <a
+        href="{{ route('landing') }}"
+        data-turbo="false"
+        onclick="return tpcPageExitDown(event, this.href)"
+        class="inline-flex items-center gap-xs font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors mb-lg"
+    >
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        Back to landing page
+    </a>
 
     <div class="text-center mb-lg">
         <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mb-xs">Welcome Back</h2>
@@ -82,5 +111,14 @@
     </div>
 
 </div>
+
+<script>
+    function tpcPageExitDown(event, href) {
+        event.preventDefault();
+        document.querySelector('.tpc-page-enter').classList.add('tpc-page-exit-down');
+        setTimeout(function () { window.location.href = href; }, 220);
+        return false;
+    }
+</script>
 
 </x-layouts.guest>

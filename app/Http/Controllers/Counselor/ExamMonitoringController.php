@@ -40,6 +40,7 @@ class ExamMonitoringController extends Controller
             'totalQuestions' => $exam->examQuestions()->count(),
             'stats' => $this->stats($exam),
             'search' => $request->query('search'),
+            'statusFilter' => $request->query('status'),
         ]);
     }
 
@@ -118,13 +119,26 @@ class ExamMonitoringController extends Controller
                 ->orWhere('school_id', 'like', "%{$search}%"));
         }
 
+        $statusFilter = $request->query('status');
+        if ($statusFilter === 'active') {
+            $query->whereIn('status', [ExamSessionStatus::InProgress, ExamSessionStatus::Flagged]);
+        } elseif ($statusFilter === 'inactive') {
+            $query->whereNotIn('status', [ExamSessionStatus::InProgress, ExamSessionStatus::Flagged]);
+        }
+
         return $query->get()
             ->map(function ($session) use ($exam, $totalQuestions) {
                 $remaining = null;
                 $isActive = in_array($session->status, [ExamSessionStatus::InProgress, ExamSessionStatus::Flagged], true);
-                if ($isActive && $session->started_at) {
-                    $elapsed = now()->diffInSeconds($session->started_at);
-                    $remaining = max(0, ($exam->duration_minutes * 60) - $elapsed);
+                if ($isActive && $session->started_at && $exam->duration_minutes !== null) {
+                    // Same frozen-at-start duration as the student's own timer
+                    // (ExamTakingController::remainingSeconds) — keeps this view
+                    // consistent with what the student actually sees.
+                    $totalSeconds = $session->time_remaining_seconds ?? ($exam->duration_minutes * 60);
+                    // diffInSeconds() is signed, not absolute by default — see the
+                    // same fix/comment in ExamTakingController::remainingSeconds().
+                    $elapsed = $session->started_at->diffInSeconds(now(), absolute: true);
+                    $remaining = max(0, $totalSeconds - $elapsed);
                 }
 
                 return [
@@ -132,13 +146,18 @@ class ExamMonitoringController extends Controller
                     'name' => $session->student?->name ?? '—',
                     'school_id' => $session->student?->school_id ?? '—',
                     'status' => $session->status,
+                    'is_active' => $isActive,
                     'answered' => $session->answered_count,
                     'progress' => (int) round(($session->answered_count / $totalQuestions) * 100),
                     'remaining' => $remaining,
                     'submitted_at' => $session->submitted_at,
                 ];
             })
-            ->sortBy('name')
+            // Active sessions (in progress / flagged) first, alphabetical within each group.
+            ->sortBy([
+                fn ($row) => $row['is_active'] ? 0 : 1,
+                fn ($row) => $row['name'],
+            ])
             ->values();
     }
 }

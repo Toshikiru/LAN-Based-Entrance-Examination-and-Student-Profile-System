@@ -23,7 +23,7 @@ class ReportScheduleSeeder extends Seeder
         ReportSchedule::create([
             'report_type' => 'student_performance_summary',
             'recipient_name' => 'Guidance Office',
-            'recipient_email' => 'guidance.office@guidancepulse.test',
+            'recipient_email' => 'guidance.office@tpcentrypoint.test',
             'frequency' => 'monthly',
             'is_active' => true,
             'created_by' => $counselor->id,
@@ -32,7 +32,7 @@ class ReportScheduleSeeder extends Seeder
         ReportSchedule::create([
             'report_type' => 'exam_statistics',
             'recipient_name' => 'Academic Affairs',
-            'recipient_email' => 'academic.affairs@guidancepulse.test',
+            'recipient_email' => 'academic.affairs@tpcentrypoint.test',
             'frequency' => 'quarterly',
             'is_active' => false,
             'created_by' => $counselor->id,

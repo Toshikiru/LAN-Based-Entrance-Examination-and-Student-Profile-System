@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net" agent="claude-code">
+  <diagram name="Network Topology" id="netTopoPage1">
+    <mxGraphModel dx="1704" dy="936" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" parent="1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 5;fillColor=none;strokeColor=#333333;strokeWidth=3;verticalAlign=top;align=center;fontSize=14;fontStyle=1;fontColor=#111111;spacingTop=8;" value="Institution Local Area Network (Guidance Office)" vertex="1">
+          <mxGeometry height="550" width="940" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="server" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf2fb;strokeColor=#1a5fb4;strokeWidth=2;fontSize=13;fontColor=#12395e;spacing=6;" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Application + Database Server&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;&quot;&gt;XAMPP: Apache + PHP + MariaDB&lt;br&gt;(Laravel application)&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-style: italic; color: rgb(63, 110, 165);&quot;&gt;Static IP: 192.168.1.10 (example)&lt;/font&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="300" x="330" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="switch" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=2;fontSize=13;fontColor=#7a5c00;spacing=6;" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;Network Switch / Router&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-style: italic; color: rgb(138, 109, 26);&quot;&gt;Gateway: 192.168.1.1 (example)&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;color: rgb(138, 109, 26);&quot;&gt;Subnet: 255.255.255.0 (/24)&lt;/font&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="129" width="263" x="348.5" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="client1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=2;fontSize=12;fontColor=#1f5c29;spacing=6;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Client PC 1&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;&quot;&gt;Guidance Counselor&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-style: italic; color: rgb(63, 138, 76);&quot;&gt;DHCP-assigned&lt;/font&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="190" x="50" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="client2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=2;fontSize=12;fontColor=#1f5c29;spacing=6;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Client PC 2&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;&quot;&gt;Super Administrator&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-style: italic; color: rgb(63, 138, 76);&quot;&gt;DHCP-assigned&lt;/font&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="190" x="270" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="client3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=2;fontSize=12;fontColor=#1f5c29;spacing=6;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Client PC 3&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;&quot;&gt;Student Testing Station&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-style: italic; color: rgb(63, 138, 76);&quot;&gt;DHCP-assigned&lt;/font&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="190" x="490" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="client4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=2;fontSize=12;fontColor=#1f5c29;spacing=6;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Client PC 4..N&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;&quot;&gt;Student Testing Station&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-style: italic; color: rgb(63, 138, 76);&quot;&gt;DHCP-assigned&lt;/font&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="190" x="710" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeServerSwitch" edge="1" parent="1" source="server" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#333333;strokeWidth=2;endArrow=none;" target="switch">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeSwitchClient1" edge="1" parent="1" source="switch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.15;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#555555;strokeWidth=1.5;endArrow=none;" target="client1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeSwitchClient2" edge="1" parent="1" source="switch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.38;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#555555;strokeWidth=1.5;endArrow=none;" target="client2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeSwitchClient3" edge="1" parent="1" source="switch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.62;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#555555;strokeWidth=1.5;endArrow=none;" target="client3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeSwitchClient4" edge="1" parent="1" source="switch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.85;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#555555;strokeWidth=1.5;endArrow=none;" target="client4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cloud" parent="1" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#888888;strokeWidth=1.5;fontSize=12;fontColor=#555555;" value="&lt;font style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;External Internet&lt;/span&gt;&lt;br&gt;&lt;font style=&quot;color: rgb(192, 57, 43); font-size: 12px;&quot;&gt;not required for system operation&lt;/font&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="310" x="325" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeBoundaryCloud" edge="1" parent="1" source="boundary" style="html=1;dashed=1;strokeColor=#aaaaaa;strokeWidth=1.5;endArrow=none;startArrow=none;" target="cloud">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="570" as="sourcePoint" />
+            <mxPoint x="480" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="crossLine1" edge="1" parent="1" style="html=1;strokeColor=#c0392b;strokeWidth=3;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="583" as="sourcePoint" />
+            <mxPoint x="500" y="605" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="crossLine2" edge="1" parent="1" style="html=1;strokeColor=#c0392b;strokeWidth=3;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="583" as="sourcePoint" />
+            <mxPoint x="460" y="605" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#cccccc;strokeWidth=1;fontSize=11;fontColor=#444444;align=center;verticalAlign=middle;" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;All IP addresses shown are illustrative examples for a typical /24 private LAN and must be replaced&lt;br&gt;with the actual static server IP, gateway, and DHCP range confirmed at the Guidance Office deployment site.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="840" x="60" y="750" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

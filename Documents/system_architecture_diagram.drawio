@@ -1,0 +1,77 @@
+<mxfile host="app.diagrams.net" agent="claude-code">
+  <diagram name="System Architecture" id="sysArchPage1">
+    <mxGraphModel dx="2904" dy="936" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="roleAdmin" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e8fd;strokeColor=#7d3fc2;strokeWidth=2;fontSize=12;fontColor=#4a2277;spacing=6;" value="&lt;font style=&quot;&quot;&gt;&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Super Administrator&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;font style=&quot;&quot;&gt;A&lt;/font&gt;&lt;font style=&quot;&quot;&gt;ccounts, settings, reference data, backups, audit log&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="260" x="-430" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="roleCounselor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=2;fontSize=12;fontColor=#7a5c00;spacing=6;" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Guidance Counselor&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Questions, exams, monitoring, grading, students, counseling notes&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="260" x="-130" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="roleStudent" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=2;fontSize=12;fontColor=#1f5c29;spacing=6;" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Student&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Join exam, answer and submit, view own results&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="260" x="170" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeAdminPres" edge="1" parent="1" source="roleAdmin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#555555;strokeWidth=1.5;endArrow=block;endFill=1;" target="presLayer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeCounselorPres" edge="1" parent="1" source="roleCounselor" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#555555;strokeWidth=1.5;endArrow=block;endFill=1;" target="presLayer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeStudentPres" edge="1" parent="1" source="roleStudent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#555555;strokeWidth=1.5;endArrow=block;endFill=1;" target="presLayer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="presLayer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf2fb;strokeColor=#1a5fb4;strokeWidth=2;fontSize=13;fontColor=#12395e;spacing=8;verticalAlign=middle;" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Presentation Layer&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Blade views &amp;amp; components (per-role dashboards and pages) rendered server-side;&lt;br&gt;Tailwind CSS v4 (styling), Alpine.js (interactivity), Turbo Drive (navigation) run client-side in the browser&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="900" x="-450" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="edgePresApp" edge="1" parent="1" source="presLayer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#333333;strokeWidth=2;startArrow=block;startFill=1;endArrow=block;endFill=1;fontSize=10;fontColor=#333333;labelBackgroundColor=#ffffff;" target="appLayer" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;HTTP request / HTML or JSON response&lt;br&gt;(session-based, CSRF-protected)&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="appLayer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=2;fontSize=13;fontStyle=1;fontColor=#7a5c00;verticalAlign=top;align=center;spacingTop=8;" value="Application Layer — Laravel 12 (MVC)" vertex="1">
+          <mxGeometry height="202" width="900" x="-450" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="appRoutes" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b8860b;strokeWidth=1.5;fontSize=11.5;fontColor=#7a5c00;spacing=4;" value="&lt;b&gt;Routes + Middleware&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;role:* (RBAC), EnsurePasswordIsCurrent&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="175" x="-405" y="466" as="geometry" />
+        </mxCell>
+        <mxCell id="appControllers" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b8860b;strokeWidth=1.5;fontSize=11.5;fontColor=#7a5c00;spacing=4;" value="&lt;b&gt;Controllers&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Admin\\, Counselor\\, Student\\ namespaces&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="175" x="-185" y="466" as="geometry" />
+        </mxCell>
+        <mxCell id="appServices" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b8860b;strokeWidth=1.5;fontSize=11.5;fontColor=#7a5c00;spacing=4;" value="&lt;b&gt;Services&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Scoring, dashboards, reports, backups, settings&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="175" x="35" y="466" as="geometry" />
+        </mxCell>
+        <mxCell id="appValidation" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b8860b;strokeWidth=1.5;fontSize=11.5;fontColor=#7a5c00;spacing=4;" value="&lt;b&gt;FormRequests + Policy&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Input validation; CounselingNotePolicy&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="165" x="235" y="466" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeRoutesControllers" edge="1" parent="1" source="appRoutes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#8a6d1a;strokeWidth=1.5;endArrow=block;endFill=1;" target="appControllers">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeControllersServices" edge="1" parent="1" source="appControllers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#8a6d1a;strokeWidth=1.5;endArrow=block;endFill=1;" target="appServices">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeControllersValidation" edge="1" parent="1" source="appControllers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=0;entryX=0.5;exitDx=40;entryY=0;strokeColor=#8a6d1a;strokeWidth=1.5;endArrow=block;endFill=1;entryDx=0;entryDy=0;" target="appValidation">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-95" y="466" />
+              <mxPoint x="-95" y="450" />
+              <mxPoint x="327.53" y="450" />
+              <mxPoint x="327.53" y="466" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edgeAppData" edge="1" parent="1" source="appLayer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#333333;strokeWidth=2;startArrow=block;startFill=1;endArrow=block;endFill=1;fontSize=10;fontColor=#333333;labelBackgroundColor=#ffffff;" target="dataLayer" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;Eloquent ORM queries / results&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dataLayer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=2;fontSize=13;fontColor=#1f5c29;spacing=8;verticalAlign=middle;" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;Data Layer&lt;/b&gt;&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Eloquent Models → single local MariaDB / MySQL database instance&lt;br&gt;(23 application tables — users, exams, exam_sessions, exam_results, counseling_notes, audit_logs, and others)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="900" x="-450" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="xZEeUHa0pD6YYPpzTMNW-2" edge="1" parent="1" source="legend" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="dataLayer" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#cccccc;strokeWidth=1;fontSize=11;fontColor=#444444;align=center;verticalAlign=middle;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;All three layers execute on the single local server described in Network Architecture; no layer depends on an external service.&lt;br&gt;Role tiers determine which routes, views, and data a given session may reach — they do not represent separate deployments.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="88" width="860" x="-430" y="840" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

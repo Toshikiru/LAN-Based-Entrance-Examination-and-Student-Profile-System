@@ -21,7 +21,9 @@ class UpdateExamRequest extends FormRequest
             'description' => ['nullable', 'string', 'max:2000'],
             'department_id' => ['nullable', 'exists:departments,id'],
             'year_level' => ['nullable', Rule::in(array_keys(ExamController::YEAR_LEVELS))],
-            'duration_minutes' => ['required', 'integer', 'min:1', 'max:600'],
+            'passing_score' => ['required', 'numeric', 'min:0', 'max:100'],
+            'has_timer' => ['nullable', 'boolean'],
+            'duration_minutes' => [$this->boolean('has_timer') ? 'required' : 'nullable', 'integer', 'min:1', 'max:600'],
             'starts_at' => ['nullable', 'date'],
             'ends_at' => ['nullable', 'date'],
         ];
@@ -44,6 +46,7 @@ class UpdateExamRequest extends FormRequest
         return [
             'department_id' => 'course',
             'year_level' => 'year level',
+            'passing_score' => 'passing score',
             'duration_minutes' => 'duration',
             'starts_at' => 'start date & time',
             'ends_at' => 'end date & time',

@@ -1,0 +1,191 @@
+<mxfile host="app.diagrams.net" agent="claude-code">
+  <diagram name="Use Case Diagram" id="useCasePage1">
+    <mxGraphModel dx="1420" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="actAdmin" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3e8fd;strokeColor=#7d3fc2;strokeWidth=2;fontSize=13;fontStyle=1;fontColor=#4a2277;" value="Super Administrator" vertex="1">
+          <mxGeometry height="60" width="240" x="60" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="actCounselor" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=2;fontSize=13;fontStyle=1;fontColor=#7a5c00;" value="Guidance Counselor" vertex="1">
+          <mxGeometry height="60" width="240" x="380" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="actStudent" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=2;fontSize=13;fontStyle=1;fontColor=#1f5c29;" value="Student" vertex="1">
+          <mxGeometry height="60" width="240" x="700" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc10" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f3e8fd;strokeColor=#7d3fc2;strokeWidth=1.5;fontSize=11;fontColor=#4a2277;" value="UC-10&#xa;Manage Counselor Accounts" vertex="1">
+          <mxGeometry height="65" width="240" x="60" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="uc11" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f3e8fd;strokeColor=#7d3fc2;strokeWidth=1.5;fontSize=11;fontColor=#4a2277;" value="UC-11&#xa;Manage Reference Data" vertex="1">
+          <mxGeometry height="65" width="240" x="60" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="uc12" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f3e8fd;strokeColor=#7d3fc2;strokeWidth=1.5;fontSize=11;fontColor=#4a2277;" value="UC-12&#xa;Configure System Settings" vertex="1">
+          <mxGeometry height="65" width="240" x="60" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="uc13" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f3e8fd;strokeColor=#7d3fc2;strokeWidth=1.5;fontSize=11;fontColor=#4a2277;" value="UC-13&#xa;Manage Backups" vertex="1">
+          <mxGeometry height="65" width="240" x="60" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="trunkA" edge="1" parent="1" style="html=1;strokeColor=#7d3fc2;strokeWidth=2.5;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="140" as="sourcePoint" />
+            <mxPoint x="330" y="502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="connA" edge="1" parent="1" style="html=1;strokeColor=#7d3fc2;strokeWidth=2.5;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="270" y="120" as="sourcePoint" />
+            <mxPoint x="330" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bA1" edge="1" parent="1" style="html=1;strokeColor=#7d3fc2;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="202" as="sourcePoint" />
+            <mxPoint x="300" y="202" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bA2" edge="1" parent="1" style="html=1;strokeColor=#7d3fc2;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="302" as="sourcePoint" />
+            <mxPoint x="300" y="302" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bA3" edge="1" parent="1" style="html=1;strokeColor=#7d3fc2;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="402" as="sourcePoint" />
+            <mxPoint x="300" y="402" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bA4" edge="1" parent="1" style="html=1;strokeColor=#7d3fc2;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="502" as="sourcePoint" />
+            <mxPoint x="300" y="502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uc01" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=1.5;fontSize=11;fontColor=#7a5c00;" value="UC-01&#xa;Manage Question Bank" vertex="1">
+          <mxGeometry height="65" width="240" x="380" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="uc02" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=1.5;fontSize=11;fontColor=#7a5c00;" value="UC-02&#xa;Build Examination" vertex="1">
+          <mxGeometry height="65" width="240" x="380" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="uc03" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=1.5;fontSize=11;fontColor=#7a5c00;" value="UC-03&#xa;Monitor Live Sessions" vertex="1">
+          <mxGeometry height="65" width="240" x="380" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="uc04" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=1.5;fontSize=11;fontColor=#7a5c00;" value="UC-04&#xa;Grade Short-Answer Items" vertex="1">
+          <mxGeometry height="65" width="240" x="380" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="uc05" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=1.5;fontSize=11;fontColor=#7a5c00;" value="UC-05&#xa;Manage Score Interpretation" vertex="1">
+          <mxGeometry height="65" width="240" x="380" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="uc06" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=1.5;fontSize=11;fontColor=#7a5c00;" value="UC-06&#xa;Maintain Student Profile &amp;&#xa;Counseling Notes" vertex="1">
+          <mxGeometry height="65" width="240" x="380" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="trunkC" edge="1" parent="1" style="html=1;strokeColor=#b8860b;strokeWidth=2.5;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="140" as="sourcePoint" />
+            <mxPoint x="650" y="702" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="connC" edge="1" parent="1" style="html=1;strokeColor=#b8860b;strokeWidth=2.5;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="120" as="sourcePoint" />
+            <mxPoint x="650" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bC1" edge="1" parent="1" style="html=1;strokeColor=#b8860b;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="202" as="sourcePoint" />
+            <mxPoint x="620" y="202" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bC2" edge="1" parent="1" style="html=1;strokeColor=#b8860b;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="302" as="sourcePoint" />
+            <mxPoint x="620" y="302" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bC3" edge="1" parent="1" style="html=1;strokeColor=#b8860b;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="402" as="sourcePoint" />
+            <mxPoint x="620" y="402" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bC4" edge="1" parent="1" style="html=1;strokeColor=#b8860b;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="502" as="sourcePoint" />
+            <mxPoint x="620" y="502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bC5" edge="1" parent="1" style="html=1;strokeColor=#b8860b;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="602" as="sourcePoint" />
+            <mxPoint x="620" y="602" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bC6" edge="1" parent="1" style="html=1;strokeColor=#b8860b;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="702" as="sourcePoint" />
+            <mxPoint x="620" y="702" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uc07" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=1.5;fontSize=11;fontColor=#1f5c29;" value="UC-07&#xa;Join Examination" vertex="1">
+          <mxGeometry height="65" width="240" x="700" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="uc08" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=1.5;fontSize=11;fontColor=#1f5c29;" value="UC-08&#xa;Take Examination" vertex="1">
+          <mxGeometry height="65" width="240" x="700" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="uc09" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=1.5;fontSize=11;fontColor=#1f5c29;" value="UC-09&#xa;View My Results" vertex="1">
+          <mxGeometry height="65" width="240" x="700" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="trunkS" edge="1" parent="1" style="html=1;strokeColor=#2f7d3c;strokeWidth=2.5;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="970" y="140" as="sourcePoint" />
+            <mxPoint x="970" y="402" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="connS" edge="1" parent="1" style="html=1;strokeColor=#2f7d3c;strokeWidth=2.5;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="910" y="120" as="sourcePoint" />
+            <mxPoint x="970" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bS1" edge="1" parent="1" style="html=1;strokeColor=#2f7d3c;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="970" y="202" as="sourcePoint" />
+            <mxPoint x="940" y="202" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bS2" edge="1" parent="1" style="html=1;strokeColor=#2f7d3c;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="970" y="302" as="sourcePoint" />
+            <mxPoint x="940" y="302" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bS3" edge="1" parent="1" style="html=1;strokeColor=#2f7d3c;strokeWidth=2.5;endArrow=open;endFill=0;endSize=10;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="970" y="402" as="sourcePoint" />
+            <mxPoint x="940" y="402" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eShared1" edge="1" parent="1" style="html=1;strokeColor=#888888;strokeWidth=2;dashed=1;endArrow=none;startArrow=none;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="150" as="sourcePoint" />
+            <mxPoint x="650" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eShared2" edge="1" parent="1" style="html=1;strokeColor=#888888;strokeWidth=2;dashed=1;endArrow=open;endFill=0;endSize=10;startArrow=none;fontSize=10;fontStyle=1;fontColor=#555555;labelBackgroundColor=#ffffff;" value="&lt;&lt;view only&gt;&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="150" />
+              <mxPoint x="670" y="390" />
+            </Array>
+            <mxPoint x="650" y="150" as="sourcePoint" />
+            <mxPoint x="650" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#cccccc;strokeWidth=1;fontSize=10.5;fontColor=#444444;align=center;verticalAlign=middle;spacing=10;" value="Each actor connects via one vertical trunk line with short branches into each use case — keeps every line inside a clear lane so nothing crosses through an unrelated ellipse. Dashed line: the Super Administrator&#39;s read-only (view only) access to Live Monitoring, distinct from the Guidance Counselor&#39;s full control over the same use case." vertex="1">
+          <mxGeometry height="30" width="880" x="60" y="760" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

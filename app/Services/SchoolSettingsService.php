@@ -29,7 +29,7 @@ class SchoolSettingsService
      * so the app looks exactly as it does today until an admin changes it.
      */
     public const DEFAULT_SCHOOL_NAME = 'Talibon Polytechnic College';
-    public const DEFAULT_SYSTEM_NAME = 'GuidancePulse';
+    public const DEFAULT_SYSTEM_NAME = 'TPC EntryPoint';
     public const DEFAULT_SYSTEM_FULL_NAME = 'LAN-Based Entrance Examination and Student Profile System for Guidance Services';
 
     protected const LOGO_KEY = 'school_logo_path';

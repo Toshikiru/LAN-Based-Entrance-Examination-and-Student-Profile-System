@@ -99,37 +99,47 @@
                     </div>
                 @else
                     <div id="question-list" class="divide-y divide-outline-variant">
-                        @foreach ($exam->examQuestions as $eq)
+                        @foreach ($questionsPage as $eq)
                             @php
                                 $q = $eq->question;
                                 $points = rtrim(rtrim(number_format($eq->marks_override ?? $q->marks, 2), '0'), '.');
                             @endphp
-                            <div class="eq-row flex items-start gap-md p-lg hover:bg-primary/5 transition-colors" data-eqid="{{ $eq->id }}">
+                            <div class="eq-row flex items-start gap-sm p-md hover:bg-primary/5 transition-colors" data-eqid="{{ $eq->id }}">
                                 <span class="drag-handle cursor-grab text-outline-variant hover:text-on-surface pt-1" title="Drag to reorder">
-                                    <span class="material-symbols-outlined">drag_indicator</span>
+                                    <span class="material-symbols-outlined text-[18px]">drag_indicator</span>
                                 </span>
                                 <div class="flex-1 min-w-0">
-                                    <div class="flex items-center gap-sm mb-xs">
-                                        <span class="inline-flex items-center gap-xs text-label-sm text-on-surface-variant">
-                                            <span class="material-symbols-outlined text-[16px]">{{ $q->type->icon() }}</span>
+                                    <div class="flex items-center gap-xs mb-1">
+                                        <span class="inline-flex items-center gap-xs font-label-sm text-label-sm text-on-surface-variant">
+                                            <span class="material-symbols-outlined text-[14px]">{{ $q->type->icon() }}</span>
                                             {{ $q->type->label() }}
                                         </span>
                                         @if ($eq->examSection)
                                             <x-ui.badge variant="primary">{{ $eq->examSection->title }}</x-ui.badge>
                                         @endif
-                                        <span class="ml-auto text-label-sm text-outline">{{ $points }} pt{{ $points == 1 ? '' : 's' }}</span>
+                                        <span class="ml-auto font-label-sm text-label-sm text-outline">{{ $points }} pt{{ $points == 1 ? '' : 's' }}</span>
                                     </div>
-                                    <p class="text-body-md text-on-surface line-clamp-2">{{ $q->question_text }}</p>
+                                    <p class="font-label-md text-label-md text-on-surface line-clamp-2">{{ $q->question_text }}</p>
                                 </div>
                                 <form method="POST" action="{{ route('counselor.exams.builder.detach', [$exam, $eq]) }}">
                                     @csrf @method('DELETE')
-                                    <button type="submit" class="p-2 text-outline-variant hover:text-error transition-colors" title="Remove">
-                                        <span class="material-symbols-outlined text-[20px]">delete</span>
+                                    <button type="submit" class="p-1 text-outline-variant hover:text-error transition-colors" title="Remove">
+                                        <span class="material-symbols-outlined text-[18px]">delete</span>
                                     </button>
                                 </form>
                             </div>
                         @endforeach
                     </div>
+
+                    @if ($questionsPage->hasPages())
+                        <x-slot:footer>
+                            <x-ui.pagination
+                                :current-page="$questionsPage->currentPage()"
+                                :total-pages="$questionsPage->lastPage()"
+                                :total-label="'Showing ' . $questionsPage->firstItem() . '-' . $questionsPage->lastItem() . ' of ' . $questionsPage->total() . ' questions'"
+                            />
+                        </x-slot:footer>
+                    @endif
                 @endif
             </x-ui.card>
         </div>
@@ -149,7 +159,7 @@
                     </div>
                     <div class="flex items-center justify-between">
                         <dt class="text-label-md text-on-surface-variant">Duration</dt>
-                        <dd class="font-label-md text-on-surface">{{ $summary['duration'] }} min</dd>
+                        <dd class="font-label-md text-on-surface">{{ $summary['duration'] ? $summary['duration'] . ' min' : 'No limit' }}</dd>
                     </div>
                 </dl>
 
@@ -187,7 +197,7 @@
 
     <script>
         // SortableJS is bundled into resources/js/app.js (window.Sortable),
-        // loaded once via @vite in the shared layout head. Its module script
+        // loaded once via @@vite in the shared layout head. Its module script
         // is deferred, so it may not have executed yet if this is a hard
         // page load landing directly here (vs. navigating in via Turbo) —
         // `turbo:load` fires after every page is fully ready, including the

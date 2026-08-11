@@ -63,7 +63,7 @@
     </div>
 
     {{-- Available Examinations + Progress --}}
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-lg mb-xl">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-lg mb-xl items-start">
         <div class="lg:col-span-3">
             <h3 class="font-headline-md text-headline-md text-on-surface mb-lg">Available Examinations</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
@@ -81,7 +81,7 @@
                         @endif
                         <div class="flex items-center justify-between pt-md border-t border-outline-variant text-outline">
                             <div class="flex items-center gap-md">
-                                <span class="flex items-center gap-xs text-label-sm"><span class="material-symbols-outlined text-[18px]">timer</span>{{ $exam->duration_minutes }}m</span>
+                                <span class="flex items-center gap-xs text-label-sm"><span class="material-symbols-outlined text-[18px]">timer</span>{{ $exam->duration_minutes ? $exam->duration_minutes . 'm' : 'No limit' }}</span>
                                 <span class="flex items-center gap-xs text-label-sm"><span class="material-symbols-outlined text-[18px]">list_alt</span>{{ $exam->exam_questions_count }} Questions</span>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
     </div>
 
     {{-- Upcoming + Notifications + Quick Actions --}}
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg mb-xl">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg mb-xl items-start">
         <div class="lg:col-span-2">
             <h3 class="font-headline-md text-headline-md text-on-surface mb-lg">Upcoming Examinations</h3>
             <div class="space-y-sm">

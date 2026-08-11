@@ -31,7 +31,7 @@
                 <tr class="hover:bg-primary/5 transition-colors">
                     <td class="px-lg py-md">
                         <p class="font-label-md text-on-surface">{{ $exam->title }}</p>
-                        <p class="text-label-sm text-outline">{{ $exam->duration_minutes }} min</p>
+                        <p class="text-label-sm text-outline">{{ $exam->duration_minutes ? $exam->duration_minutes . ' min' : 'No limit' }}</p>
                     </td>
                     <td class="px-lg py-md">
                         <x-ui.badge :variant="$exam->status->value === 'published' ? 'success' : 'neutral'" dot>{{ ucfirst($exam->status->value) }}</x-ui.badge>

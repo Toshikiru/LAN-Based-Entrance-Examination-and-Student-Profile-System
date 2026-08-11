@@ -8,7 +8,7 @@
 
 {{--
     Usage:
-    <x-navigation.sidebar :groups="$navGroups" :active="'dashboard'" brand="GuidancePulse" subtitle="...">
+    <x-navigation.sidebar :groups="$navGroups" :active="'dashboard'" brand="TPC EntryPoint" subtitle="...">
         <x-slot:cta> ... optional call-to-action button ... </x-slot:cta>
     </x-navigation.sidebar>
 

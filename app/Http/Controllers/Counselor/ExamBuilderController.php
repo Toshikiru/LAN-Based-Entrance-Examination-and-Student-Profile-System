@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers\Counselor;
 
-use App\Enums\ExamStatus;
 use App\Enums\QuestionStatus;
 use App\Enums\QuestionType;
-use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Models\AuditLog;
 use App\Models\Exam;
 use App\Models\ExamQuestion;
+use App\Models\ExamResult;
 use App\Models\ExamSection;
 use App\Models\Question;
-use App\Models\User;
-use App\Notifications\ExaminationAssigned;
-use App\Notifications\ExaminationPublished;
+use App\Services\ExamPublishingService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +20,10 @@ use Illuminate\View\View;
 
 class ExamBuilderController extends Controller
 {
+    public function __construct(protected ExamPublishingService $publishing)
+    {
+    }
+
     /**
      * The builder canvas: sections, attached questions, live summary.
      */
@@ -35,8 +36,15 @@ class ExamBuilderController extends Controller
             'examQuestions.examSection',
         ]);
 
+        $questionsPage = $exam->examQuestions()
+            ->with(['question.options', 'examSection'])
+            ->orderBy('order')
+            ->paginate(5)
+            ->withQueryString();
+
         return view('counselor.exams.builder', [
             'exam' => $exam,
+            'questionsPage' => $questionsPage,
             'summary' => $this->summary($exam),
         ]);
     }
@@ -133,6 +141,13 @@ class ExamBuilderController extends Controller
 
     /**
      * Persist a new question order (array of exam_question ids in order).
+     *
+     * The question list is paginated, so a reorder submission only ever
+     * contains the ids visible on one page. Renumbering those sequentially
+     * from 1 would collide with the (unseen) order values of every other
+     * page, so instead we keep the same set of order values that page
+     * already occupied and just redistribute them according to the new
+     * drag order — that leaves items on other pages untouched.
      */
     public function reorder(Request $request, Exam $exam): RedirectResponse
     {
@@ -141,18 +156,23 @@ class ExamBuilderController extends Controller
             'order.*' => ['integer'],
         ]);
 
-        $owned = $exam->examQuestions()->pluck('id')->all();
+        $owned = $exam->examQuestions()
+            ->whereIn('id', $data['order'])
+            ->pluck('order', 'id')
+            ->mapWithKeys(fn ($order, $id) => [(int) $id => $order]);
+        $slots = $owned->values()->sort()->values();
 
-        DB::transaction(function () use ($data, $owned, $exam) {
+        DB::transaction(function () use ($data, $owned, $slots, $exam) {
             $position = 0;
             foreach ($data['order'] as $examQuestionId) {
-                if (! in_array((int) $examQuestionId, $owned, true)) {
+                $examQuestionId = (int) $examQuestionId;
+                if (! $owned->has($examQuestionId)) {
                     continue;
                 }
-                $position++;
                 ExamQuestion::where('id', $examQuestionId)
                     ->where('exam_id', $exam->id)
-                    ->update(['order' => $position]);
+                    ->update(['order' => $slots[$position]]);
+                $position++;
             }
         });
 
@@ -217,6 +237,16 @@ class ExamBuilderController extends Controller
             'allow_resume' => $request->boolean('allow_resume'),
         ]);
 
+        // Scores/percentages already on file don't change, but whether they
+        // cleared the bar does — reflect the new threshold on existing results
+        // rather than leaving them stuck with whatever passing_score was set
+        // (or defaulted to 0) at the time they were originally computed.
+        ExamResult::whereHas('examSession', fn ($q) => $q->where('exam_id', $exam->id))
+            ->get()
+            ->each(fn (ExamResult $result) => $result->update([
+                'passed' => (float) $result->percentage >= (float) $data['passing_score'],
+            ]));
+
         $this->logAudit('exam.settings_updated', $exam, "Updated settings for \"{$exam->title}\".");
 
         return redirect()
@@ -246,41 +276,21 @@ class ExamBuilderController extends Controller
 
     public function publish(Exam $exam): RedirectResponse
     {
-        if ($exam->examQuestions()->count() === 0) {
-            return redirect()
-                ->route('counselor.exams.builder', $exam)
-                ->with('error', 'Add at least one question before publishing.');
+        // passing_score defaults to 0 until Settings is saved — publishing with
+        // that default means every submission auto-passes (percentage >= 0).
+        if ($error = $this->publishing->publishError($exam)) {
+            $route = str_contains($error, 'passing score') ? 'counselor.exams.settings' : 'counselor.exams.builder';
+
+            return redirect()->route($route, $exam)->with('error', $error);
         }
 
-        $exam->update([
-            'status' => ExamStatus::Published,
-            'access_code' => $exam->access_code ?: $this->uniqueAccessCode(),
-        ]);
+        $this->publishing->publish($exam);
 
         $this->logAudit('exam.published', $exam, "Published \"{$exam->title}\" (code {$exam->access_code}).");
-
-        $exam->creator?->notify(new ExaminationPublished($exam));
-        $this->targetedStudents($exam)->each->notify(new ExaminationAssigned($exam));
 
         return redirect()
             ->route('counselor.exams.publish', $exam)
             ->with('status', "\"{$exam->title}\" is now published. Access code: {$exam->access_code}");
-    }
-
-    /**
-     * Students eligible for this exam based on its department/year-level targeting
-     * (null on either field means "open to everyone" for that dimension).
-     */
-    protected function targetedStudents(Exam $exam)
-    {
-        return User::query()
-            ->where('role', UserRole::Student)
-            ->when($exam->department_id, fn ($q) => $q->where('department_id', $exam->department_id))
-            ->when($exam->year_level, fn ($q) => $q->whereHas(
-                'studentProfile',
-                fn ($q) => $q->where('year_level', $exam->year_level)
-            ))
-            ->get();
     }
 
     public function generateAccessCode(Exam $exam): RedirectResponse

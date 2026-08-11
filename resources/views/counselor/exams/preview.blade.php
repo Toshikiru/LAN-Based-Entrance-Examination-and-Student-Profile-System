@@ -40,7 +40,9 @@
             </div>
             <div class="flex items-center gap-sm px-lg py-sm rounded-lg bg-primary/10 text-primary">
                 <span class="material-symbols-outlined">timer</span>
-                <span class="font-headline-md tracking-wider">{{ sprintf('%02d:%02d:00', intdiv($exam->duration_minutes, 60), $exam->duration_minutes % 60) }}</span>
+                <span class="font-headline-md tracking-wider">
+                    {{ $exam->duration_minutes !== null ? sprintf('%02d:%02d:00', intdiv($exam->duration_minutes, 60), $exam->duration_minutes % 60) : 'No limit' }}
+                </span>
             </div>
         </div>
         <div class="mt-md w-full h-2 bg-surface-container rounded-full overflow-hidden">

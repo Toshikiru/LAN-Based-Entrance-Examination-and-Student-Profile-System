@@ -11,6 +11,7 @@ use App\Http\Requests\Counselor\UpdateStudentRequest;
 use App\Models\AuditLog;
 use App\Models\Department;
 use App\Models\User;
+use App\Models\YearLevel;
 use App\Notifications\PasswordChanged;
 use App\Notifications\StudentImported;
 use App\Services\StudentRecordService;
@@ -98,6 +99,7 @@ class StudentController extends Controller
     {
         return view('counselor.students.create', [
             'departments' => Department::orderBy('name')->get(),
+            'yearLevels' => YearLevel::where('is_active', true)->get(),
             'enrollmentStatuses' => self::ENROLLMENT_STATUSES,
         ]);
     }
@@ -181,6 +183,7 @@ class StudentController extends Controller
         return view('counselor.students.edit', [
             'student' => $student,
             'departments' => Department::orderBy('name')->get(),
+            'yearLevels' => YearLevel::where('is_active', true)->get(),
             'enrollmentStatuses' => self::ENROLLMENT_STATUSES,
         ]);
     }

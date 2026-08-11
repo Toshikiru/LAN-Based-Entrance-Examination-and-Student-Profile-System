@@ -268,7 +268,7 @@ Real, functional, pure-PHP MySQL dump/restore (deliberately avoids shelling out 
 Shared single controller/page for all 3 roles (`ProfileController` — "gated by the user's own role rather than by route/middleware"). Email is editable by everyone; **name is only editable by Super Admin** (Counselor/Student identity fields are "managed elsewhere" per the FormRequest's own comment). Password change (requires current password), avatar upload/remove. Clears `must_change_password` on successful password change.
 
 ### Dark/Light Theme ✅
-Alpine.js + `localStorage` (`guidancepulse-theme` key) + CSS custom properties — no `dark:` Tailwind prefixes needed anywhere, no server-side persistence. FOUC prevented by an inline pre-paint script.
+Alpine.js + `localStorage` (`tpc-entrypoint-theme` key) + CSS custom properties — no `dark:` Tailwind prefixes needed anywhere, no server-side persistence. FOUC prevented by an inline pre-paint script.
 
 ### LAN/Offline Support ✅
 See §12 for the complete architecture explanation.
@@ -420,7 +420,7 @@ All three dashboards are backed by real, per-role service classes querying live 
   - **Branding tab** ✅ — logo upload/remove (png/jpg/jpeg/svg/webp, max 2MB), favicon upload/remove (ico/png/jpg/jpeg/svg, max 512KB). Stored on the `public` disk under `branding/`.
   - **Academic Year tab** 📋 — stub ("coming soon").
   - **General tab** 📋 — stub ("coming soon").
-- **School name / System name:** both configurable (School Name vs. System [Short] Display Name vs. System Full Name are three distinct, separately-editable fields), globally available to every Blade view via a `$branding` view-composer, with hardcoded defaults (`'Talibon Polytechnic College'` / `'GuidancePulse'` / the full proposal title) used only if the DB is unreachable or the setting was never configured.
+- **School name / System name:** both configurable (School Name vs. System [Short] Display Name vs. System Full Name are three distinct, separately-editable fields), globally available to every Blade view via a `$branding` view-composer, with hardcoded defaults (`'Talibon Polytechnic College'` / `'TPC EntryPoint'` / the full proposal title) used only if the DB is unreachable or the setting was never configured.
 - **School logo / Favicon:** see above — fully functional upload/replace/remove.
 - **Academic/reference data:**
   - **Departments** ✅ full CRUD + soft-delete/restore.

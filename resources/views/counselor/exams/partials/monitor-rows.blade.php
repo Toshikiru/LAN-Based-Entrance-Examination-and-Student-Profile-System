@@ -28,7 +28,9 @@
                 <span class="text-label-sm text-on-surface-variant w-16 text-right">{{ $row['answered'] }}/{{ $totalQuestions }}</span>
             </div>
         </td>
-        <td class="px-lg py-md font-mono text-label-md {{ $mmss ? 'text-on-surface' : 'text-outline' }}">{{ $mmss ?? '—' }}</td>
+        <td class="px-lg py-md font-mono text-label-md {{ $mmss ? 'text-on-surface' : 'text-outline' }}">
+            {{ $mmss ?? ($active && $exam->duration_minutes === null ? 'No limit' : '—') }}
+        </td>
         <td class="px-lg py-md text-label-md text-on-surface-variant">{{ $row['submitted_at']?->format('h:i A') ?? '—' }}</td>
         <td class="px-lg py-md text-right whitespace-nowrap">
             @if ($active && ! auth()->user()->isSuperAdmin())

@@ -1,5 +1,6 @@
 @props([
     'searchPlaceholder' => 'Search...',
+    'searchRoute' => null,
 ])
 
 <header id="app-topnav" class="sticky top-0 z-30 flex items-center justify-between gap-md px-lg py-sm w-full bg-surface-container-lowest border-b border-outline-variant shadow-sm h-16">
@@ -14,7 +15,11 @@
             <span class="font-label-md text-label-md font-bold text-on-surface truncate" title="{{ $branding['system_name'] }}">{{ $branding['system_name'] }}</span>
         </div>
 
-        <x-ui.search-bar :placeholder="$searchPlaceholder" class="max-w-md w-full hidden sm:flex" />
+        @if ($searchRoute)
+            <form method="GET" action="{{ route($searchRoute) }}" class="max-w-md w-full hidden sm:flex">
+                <x-ui.search-bar :placeholder="$searchPlaceholder" :value="request()->query('search')" class="w-full" />
+            </form>
+        @endif
     </div>
 
     @php

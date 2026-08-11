@@ -1,0 +1,191 @@
+<mxfile host="app.diagrams.net" agent="claude-code">
+  <diagram name="Class Diagram" id="classPage1">
+    <mxGraphModel dx="1217" dy="669" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lblA" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#888888;" value="IDENTITY" vertex="1">
+          <mxGeometry height="18" width="200" x="90" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="lblB" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#888888;" value="EXAM AUTHORING" vertex="1">
+          <mxGeometry height="18" width="200" x="90" y="358" as="geometry" />
+        </mxCell>
+        <mxCell id="lblC" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#888888;" value="EXAM TAKING" vertex="1">
+          <mxGeometry height="18" width="200" x="90" y="708" as="geometry" />
+        </mxCell>
+        <mxCell id="lblD" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#888888;" value="COUNSELING" vertex="1">
+          <mxGeometry height="18" width="200" x="90" y="998" as="geometry" />
+        </mxCell>
+        <mxCell id="lblE" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#888888;" value="SUPPORTING" vertex="1">
+          <mxGeometry height="18" width="200" x="90" y="1198" as="geometry" />
+        </mxCell>
+        <mxCell id="cDept" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="Department&#xa;&#xa;+ name, code" vertex="1">
+          <mxGeometry height="80" width="200" x="90" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="cUser" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaf2fb;strokeColor=#1a5fb4;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#12395e;" value="User&#xa;&#xa;+ school_id, role, status&#xa;+ isSuperAdmin() / isCounselor() / isStudent()" vertex="1">
+          <mxGeometry height="100" width="240" x="340" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="cSP" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="StudentProfile&#xa;&#xa;+ year_level, enrollment_status" vertex="1">
+          <mxGeometry height="70" width="220" x="630" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="cCP" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="CounselorProfile&#xa;&#xa;+ position_title" vertex="1">
+          <mxGeometry height="70" width="220" x="630" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="rA1" edge="1" parent="1" source="cDept" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;fontSize=10;fontColor=#555555;" target="cUser" value="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rA2" edge="1" parent="1" source="cUser" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" target="cSP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rA3" edge="1" parent="1" source="cUser" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" target="cCP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cQuestion" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#7a5c00;" value="Question&#xa;&#xa;+ type, difficulty, status, marks" vertex="1">
+          <mxGeometry height="80" width="200" x="90" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="cQO" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="QuestionOption&#xa;&#xa;+ is_correct, value" vertex="1">
+          <mxGeometry height="70" width="200" x="90" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="cExam" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#7a5c00;" value="Exam&#xa;&#xa;+ status, access_code, passing_score" vertex="1">
+          <mxGeometry height="90" width="240" x="340" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="cES" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="ExamSection&#xa;&#xa;+ title, order" vertex="1">
+          <mxGeometry height="70" width="240" x="340" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="cEQ" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaeaea;strokeColor=#888888;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="ExamQuestion (pivot)&#xa;&#xa;+ order, marks_override" vertex="1">
+          <mxGeometry height="70" width="240" x="340" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="cIR" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="InterpretationRange&#xa;&#xa;+ label, min/max_percentage" vertex="1">
+          <mxGeometry height="70" width="220" x="630" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="rB1" edge="1" parent="1" source="cQuestion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;" target="cQO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rB2" edge="1" parent="1" source="cExam" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;" target="cES">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rB3" edge="1" parent="1" source="cExam" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;exitX=0.75;exitY=1;entryX=0.75;entryY=0;" target="cEQ">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="565" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rB4" edge="1" parent="1" source="cES" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;" target="cEQ">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rB5" edge="1" parent="1" source="cEQ" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;exitX=0;exitY=0.4;entryX=1;entryY=0.6;" target="cQuestion">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rB6" edge="1" parent="1" source="cExam" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;" target="cIR">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cSess" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eefaf0;strokeColor=#2f7d3c;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#1f5c29;" value="ExamSession&#xa;&#xa;+ status, active_session_lock" vertex="1">
+          <mxGeometry height="90" width="240" x="340" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="cAns" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="ExamAnswer&#xa;&#xa;+ answer_text, awarded_marks, is_correct" vertex="1">
+          <mxGeometry height="80" width="220" x="90" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="cViol" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="ExamViolation&#xa;&#xa;+ type, occurred_at" vertex="1">
+          <mxGeometry height="70" width="220" x="350" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="cRes" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="ExamResult&#xa;&#xa;+ total_score, percentage, passed" vertex="1">
+          <mxGeometry height="70" width="220" x="630" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="rC1" edge="1" parent="1" source="cSess" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;exitX=0.2;exitY=1;entryX=0.5;entryY=0;" target="cAns">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rC2" edge="1" parent="1" source="cSess" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;" target="cViol">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rC3" edge="1" parent="1" source="cSess" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;exitX=0.8;exitY=1;entryX=0.5;entryY=0;fontSize=10;fontColor=#555555;" target="cRes" value="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cCN" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#7a5c00;" value="CounselingNote&#xa;&#xa;+ category, note_date, content,&#xa;follow_up_action, status" vertex="1">
+          <mxGeometry height="90" width="240" x="340" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="cCNR" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="CounselingNoteRevision&#xa;&#xa;+ (immutable snapshot fields)" vertex="1">
+          <mxGeometry height="70" width="240" x="340" y="1110" as="geometry" />
+        </mxCell>
+        <mxCell id="rD1" edge="1" parent="1" source="cCN" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;" target="cCNR">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cCourse" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="Course&#xa;&#xa;+ name, code, duration_years" vertex="1">
+          <mxGeometry height="80" width="200" x="90" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="cYL" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=11.5;fontStyle=1;fontColor=#222222;" value="YearLevel&#xa;&#xa;+ name, order, is_active&#xa;(no relationships — standalone)" vertex="1">
+          <mxGeometry height="80" width="220" x="340" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="cSS" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="SystemSetting&#xa;&#xa;+ key, value" vertex="1">
+          <mxGeometry height="80" width="200" x="610" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="cAudit" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="AuditLog&#xa;&#xa;+ action, subject (polymorphic)" vertex="1">
+          <mxGeometry height="70" width="200" x="90" y="1350" as="geometry" />
+        </mxCell>
+        <mxCell id="cRS" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#222222;" value="ReportSchedule&#xa;&#xa;+ report_type, frequency, is_active" vertex="1">
+          <mxGeometry height="70" width="220" x="340" y="1350" as="geometry" />
+        </mxCell>
+        <mxCell id="examDup" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fdf3e3;strokeColor=#b8860b;strokeWidth=1.5;fontSize=11;fontStyle=1;fontColor=#7a5c00;" value="Exam *" vertex="1">
+          <mxGeometry height="40" width="80" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="rBridge1" edge="1" parent="1" source="examDup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#1a5fb4;strokeWidth=1.5;dashed=1;" target="cSess">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="userDupC" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaf2fb;strokeColor=#1a5fb4;strokeWidth=1.5;fontSize=11;fontStyle=1;fontColor=#12395e;" value="User *" vertex="1">
+          <mxGeometry height="40" width="80" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="rBridge2" edge="1" parent="1" source="userDupC" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#1a5fb4;strokeWidth=1.5;dashed=1;" target="cSess">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="userDupD" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaf2fb;strokeColor=#1a5fb4;strokeWidth=1.5;fontSize=11;fontStyle=1;fontColor=#12395e;" value="User *" vertex="1">
+          <mxGeometry height="50" width="80" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="rBridge3" edge="1" parent="1" source="userDupD" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#1a5fb4;strokeWidth=1.5;dashed=1;exitY=0.3;entryY=0.3;" target="cCN">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rBridge4" edge="1" parent="1" source="userDupD" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#1a5fb4;strokeWidth=1.5;dashed=1;exitY=0.7;entryY=0.7;" target="cCN">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="deptDup" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=10.5;fontStyle=1;fontColor=#222222;" value="Department *" vertex="1">
+          <mxGeometry height="40" width="80" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="rBridge5" edge="1" parent="1" source="deptDup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#1a5fb4;strokeWidth=1.5;dashed=1;" target="cCourse">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="userDupE" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaf2fb;strokeColor=#1a5fb4;strokeWidth=1.5;fontSize=11;fontStyle=1;fontColor=#12395e;" value="User *" vertex="1">
+          <mxGeometry height="60" width="80" y="1290" as="geometry" />
+        </mxCell>
+        <mxCell id="rBridge6" edge="1" parent="1" source="userDupE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#1a5fb4;strokeWidth=1.5;dashed=1;exitY=0.25;entryX=0;entryY=0.5;" target="cSS">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="1310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rBridge7" edge="1" parent="1" source="userDupE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#1a5fb4;strokeWidth=1.5;dashed=1;exitY=0.5;entryX=0.5;entryY=0;" target="cAudit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rBridge8" edge="1" parent="1" source="userDupE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#1a5fb4;strokeWidth=1.5;dashed=1;exitY=0.75;entryX=0;entryY=0.5;" target="cRS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rBridgeA1" edge="1" parent="1" source="cUser" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#1a5fb4;strokeWidth=1.5;dashed=1;exitX=0.25;exitY=1;entryX=0.4;entryY=0;" target="cQuestion">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rBridgeA2" edge="1" parent="1" source="cUser" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#1a5fb4;strokeWidth=1.5;dashed=1;exitX=0.55;exitY=1;entryX=0.4;entryY=0;" target="cExam">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rBridgeA3" edge="1" parent="1" source="cDept" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;strokeColor=#1a5fb4;strokeWidth=1.5;dashed=1;" target="cExam">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="190" y="340" />
+              <mxPoint x="420" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#cccccc;strokeWidth=1;fontSize=10.5;fontColor=#333333;align=center;verticalAlign=middle;spacing=10;" value="Solid lines: relationship within a domain cluster. Dashed lines: relationships that cross clusters. Small boxes marked with an asterisk (Exam *, User *, Department *) are the same class shown again in miniature next to a distant class it relates to, so no line has to travel the length of the page — the same convention used in the Entity-Relationship Diagram. Relationship names correspond to the actual Eloquent method names in each model (e.g. User::examsCreated(), User::counselingNotesAuthored())." vertex="1">
+          <mxGeometry height="90" width="760" x="90" y="1450" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

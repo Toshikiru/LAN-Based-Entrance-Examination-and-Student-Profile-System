@@ -38,7 +38,7 @@
                 <dl class="grid grid-cols-1 sm:grid-cols-2 gap-md">
                     <div><dt class="text-label-sm text-outline">Course</dt><dd class="font-label-md text-on-surface">{{ $exam->department?->name ?? '—' }}</dd></div>
                     <div><dt class="text-label-sm text-outline">Year Level</dt><dd class="font-label-md text-on-surface">{{ $exam->year_level ?? '—' }}</dd></div>
-                    <div><dt class="text-label-sm text-outline">Duration</dt><dd class="font-label-md text-on-surface">{{ $exam->duration_minutes }} min</dd></div>
+                    <div><dt class="text-label-sm text-outline">Duration</dt><dd class="font-label-md text-on-surface">{{ $exam->duration_minutes ? $exam->duration_minutes . ' min' : 'No limit' }}</dd></div>
                     <div><dt class="text-label-sm text-outline">Passing Score</dt><dd class="font-label-md text-on-surface">{{ rtrim(rtrim(number_format($exam->passing_score, 2), '0'), '.') }}%</dd></div>
                     <div><dt class="text-label-sm text-outline">Total Questions</dt><dd class="font-label-md text-on-surface">{{ $summary['total_questions'] }}</dd></div>
                     <div><dt class="text-label-sm text-outline">Total Points</dt><dd class="font-label-md text-on-surface">{{ rtrim(rtrim(number_format($summary['total_points'], 2), '0'), '.') }}</dd></div>

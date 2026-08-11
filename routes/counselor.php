@@ -11,6 +11,7 @@ use App\Http\Controllers\Counselor\QuestionController;
 use App\Http\Controllers\Counselor\QuestionImportController;
 use App\Http\Controllers\Counselor\ReportController;
 use App\Http\Controllers\Counselor\ReportScheduleController;
+use App\Http\Controllers\Counselor\SearchController;
 use App\Http\Controllers\Counselor\StudentController;
 use App\Http\Controllers\Counselor\StudentRecordController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,8 @@ Route::patch('/students/{student}/reset-password', [StudentController::class, 'r
     ->name('students.reset-password');
 
 Route::get('/counseling-notes', [CounselingNoteController::class, 'index'])->name('counseling-notes.index');
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::resource('exams', ExamController::class)->only(['index']);
 

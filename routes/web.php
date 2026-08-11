@@ -11,18 +11,17 @@ use Illuminate\Support\Facades\Route;
 // ones: admin.dashboard, counselor.dashboard, student.dashboard). Laravel's
 // `guest` middleware — which guards /login — falls back to redirecting an
 // already-authenticated visitor to `/` when neither of those exist. If `/`
-// then unconditionally redirected everyone to /login regardless of auth
-// state (as it used to), a still-logged-in user landing on `/` — e.g.
-// reopening a bookmark after closing the browser without logging out —
-// would bounce forever between `/` and `/login`. Checking auth here breaks
-// that loop at the source.
+// unconditionally showed the landing page regardless of auth state, a
+// still-logged-in user landing on `/` — e.g. reopening a bookmark after
+// closing the browser without logging out — would see the marketing page
+// instead of their dashboard. Checking auth here sends them straight back in.
 Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->to(LoginController::redirectPathFor(Auth::user()->role));
     }
 
-    return redirect()->route('login');
-});
+    return view('landing');
+})->name('landing');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login');

@@ -28,11 +28,18 @@
         <span class="material-symbols-outlined text-primary">quiz</span>
         <h1 class="font-headline-md text-headline-md text-on-surface truncate">{{ $exam->title }}</h1>
     </div>
-    <div id="timer" class="flex items-center gap-sm px-lg py-sm rounded-lg bg-primary/10 text-primary font-headline-md tracking-wider"
-         x-data="examTimer({{ $remaining }})" x-init="start()">
-        <span class="material-symbols-outlined">timer</span>
-        <span x-text="display"></span>
-    </div>
+    @if ($remaining !== null)
+        <div id="timer" class="flex items-center gap-sm px-lg py-sm rounded-lg bg-primary/10 text-primary font-headline-md tracking-wider"
+             x-data="examTimer({{ $remaining }})" x-init="start()">
+            <span class="material-symbols-outlined">timer</span>
+            <span x-text="display"></span>
+        </div>
+    @else
+        <div class="flex items-center gap-sm px-lg py-sm rounded-lg bg-surface-container text-on-surface-variant font-label-md">
+            <span class="material-symbols-outlined">all_inclusive</span>
+            No time limit
+        </div>
+    @endif
 </header>
 
 <main class="max-w-[1100px] mx-auto w-full p-lg grid grid-cols-1 lg:grid-cols-4 gap-lg">

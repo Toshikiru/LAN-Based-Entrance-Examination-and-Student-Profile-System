@@ -51,12 +51,12 @@
         @endforeach
     </x-ui.select>
 
-    <x-ui.input
-        label="Year Level"
-        name="year_level"
-        placeholder="e.g. 3rd Year"
-        value="{{ old('year_level', $profile?->year_level) }}"
-    />
+    <x-ui.select label="Year Level" name="year_level" placeholder="Select a year level...">
+        @php $selectedYearLevel = old('year_level', $profile?->year_level); @endphp
+        @foreach ($yearLevels as $yearLevel)
+            <option value="{{ $yearLevel->name }}" @selected($selectedYearLevel === $yearLevel->name)>{{ $yearLevel->name }}</option>
+        @endforeach
+    </x-ui.select>
 
     <x-ui.input
         label="Section"

@@ -66,6 +66,9 @@ class StudentDashboardService
     {
         return $student->examSessions()
             ->where('status', ExamSessionStatus::Completed)
+            // A session's exam can be soft-deleted out from under it — the
+            // dashboard view dereferences $session->exam unconditionally.
+            ->whereHas('exam')
             ->with(['exam', 'result'])
             ->latest('submitted_at')
             ->limit($limit)
@@ -80,6 +83,8 @@ class StudentDashboardService
     {
         return $student->examSessions()
             ->where('status', ExamSessionStatus::InProgress)
+            // Same soft-delete-orphan guard as recentResults() above.
+            ->whereHas('exam')
             ->with('exam')
             ->latest('started_at')
             ->first();

@@ -17,6 +17,9 @@ class ResultController extends Controller
         $sessions = $request->user()
             ->examSessions()
             ->where('status', ExamSessionStatus::Completed)
+            // A session's exam can be soft-deleted out from under it — the view
+            // dereferences $session->exam unconditionally, so exclude orphans here.
+            ->whereHas('exam')
             ->with(['exam', 'result'])
             ->latest('submitted_at')
             ->paginate(15);

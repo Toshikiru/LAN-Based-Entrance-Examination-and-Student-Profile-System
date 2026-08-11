@@ -76,7 +76,7 @@
 </x-navigation.sidebar>
 
 <div class="lg:ml-[260px] min-h-screen flex flex-col">
-    <x-navigation.topnav search-placeholder="Search system logs..." />
+    <x-navigation.topnav search-placeholder="Search system logs..." search-route="admin.audit-logs.index" />
 
     <main class="flex-1 p-lg max-w-[1600px] mx-auto w-full">
         {{ $slot }}

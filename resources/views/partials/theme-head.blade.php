@@ -1,6 +1,6 @@
 {{--
     Shared <head> partial included by every layout.
-    This is the single source of truth for the GuidancePulse design system:
+    This is the single source of truth for the TPC EntryPoint design system:
     - Design tokens (colors, spacing, radius, typography) live in resources/css/app.css
       (light + dark theme values as CSS custom properties, so every Tailwind color utility
       re-themes automatically when the `dark` class is toggled on <html> — no `dark:` prefix
@@ -14,7 +14,7 @@
 {{-- Inline theme script MUST run before Tailwind paints, to avoid a flash of the wrong theme --}}
 <script>
     (function () {
-        var stored = localStorage.getItem('guidancepulse-theme');
+        var stored = localStorage.getItem('tpc-entrypoint-theme');
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         var isDark = stored ? stored === 'dark' : prefersDark;
         document.documentElement.classList.toggle('dark', isDark);

@@ -9,7 +9,7 @@
     x-on:click="
         dark = !dark;
         document.documentElement.classList.toggle('dark', dark);
-        localStorage.setItem('guidancepulse-theme', dark ? 'dark' : 'light');
+        localStorage.setItem('tpc-entrypoint-theme', dark ? 'dark' : 'light');
     "
     {{ $attributes->class(['p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors']) }}
     aria-label="Toggle dark mode"

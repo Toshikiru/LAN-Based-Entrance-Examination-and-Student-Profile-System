@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             ['school_id' => 'ADMIN-0001'],
             [
                 'name' => 'Admin Root',
-                'email' => 'admin@guidancepulse.test',
+                'email' => 'admin@tpcentrypoint.test',
                 'password' => Hash::make('password'),
                 'role' => UserRole::SuperAdmin,
                 'status' => UserStatus::Active,
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
                 ['school_id' => $data['school_id']],
                 [
                     'name' => $data['name'],
-                    'email' => strtolower(str_replace(' ', '.', $data['name'])) . '@guidancepulse.test',
+                    'email' => strtolower(str_replace(' ', '.', $data['name'])) . '@tpcentrypoint.test',
                     'password' => Hash::make('password'),
                     'role' => UserRole::Counselor,
                     'status' => UserStatus::Active,

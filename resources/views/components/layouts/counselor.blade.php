@@ -38,7 +38,7 @@
 </x-navigation.sidebar>
 
 <div class="lg:ml-[260px] min-h-screen flex flex-col">
-    <x-navigation.topnav search-placeholder="Search students, exams, or reports..." />
+    <x-navigation.topnav search-placeholder="Search students, exams, or reports..." search-route="counselor.search" />
 
     <main class="flex-1 p-lg max-w-[1400px] mx-auto w-full">
         {{ $slot }}

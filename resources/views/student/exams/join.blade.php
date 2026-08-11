@@ -49,7 +49,7 @@
                     <div class="flex items-center justify-between p-lg border-b border-outline-variant last:border-b-0">
                         <div>
                             <p class="font-label-md text-on-surface">{{ $session->exam->title }}</p>
-                            <p class="text-label-sm text-outline">{{ $session->exam->duration_minutes }} min</p>
+                            <p class="text-label-sm text-outline">{{ $session->exam->duration_minutes ? $session->exam->duration_minutes . ' min' : 'No limit' }}</p>
                         </div>
                         @if ($session->status === ExamSessionStatus::Completed)
                             <x-ui.button :href="route('student.exams.result', $session->exam)" variant="outline" size="sm" icon="grade">View Result</x-ui.button>

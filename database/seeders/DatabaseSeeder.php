@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             QuestionBankSeeder::class,
             ExamSeeder::class,
             ExamSessionSeeder::class,
+            DashboardDemoDataSeeder::class,
             CounselingNoteSeeder::class,
             AuditLogSeeder::class,
             NotificationSeeder::class,

@@ -78,7 +78,7 @@
         </x-ui.card>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg items-start">
         {{-- Main Column --}}
         <div class="lg:col-span-2 space-y-xl">
             {{-- System Overview Chart --}}

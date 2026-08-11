@@ -1,7 +1,7 @@
 @props([
     'title' => \App\Services\SchoolSettingsService::DEFAULT_SYSTEM_NAME,
     'branding' => [
-        'system_name' => config('app.name', 'GuidancePulse'),
+        'system_name' => config('app.name', 'TPC EntryPoint'),
         'system_full_name' => 'Guidance & Psychological Services Management System',
         'school_name' => 'Tagbilaran City College',
         'logo_url' => null,
@@ -67,7 +67,7 @@
                             <span class="material-symbols-outlined text-on-primary">school</span>
                         </div>
                     @endif
-                    <h1 class="font-headline-lg text-headline-lg font-bold tracking-tight">{{ $branding['system_name'] ?? 'GuidancePulse' }}</h1>
+                    <h1 class="font-headline-lg text-headline-lg font-bold tracking-tight">{{ $branding['system_name'] ?? 'TPC EntryPoint' }}</h1>
                 </div>
 
                 <h2 class="font-display-lg-mobile text-display-lg-mobile font-bold leading-tight mb-sm">
@@ -132,7 +132,7 @@
                         <span class="material-symbols-outlined text-[18px] text-on-primary">school</span>
                     </div>
                 @endif
-                <h1 class="font-headline-md text-headline-md font-bold text-on-surface">{{ $branding['system_name'] ?? 'GuidancePulse' }}</h1>
+                <h1 class="font-headline-md text-headline-md font-bold text-on-surface">{{ $branding['system_name'] ?? 'TPC EntryPoint' }}</h1>
             </div>
 
             <div class="w-full max-w-md bg-surface-container-lowest rounded-[24px] shadow-2xl p-lg border border-outline-variant relative z-10">
@@ -143,7 +143,7 @@
         {{-- Footer info - Flows naturally below the card --}}
         <footer class="mt-auto pt-md text-center w-full shrink-0">
             <p class="font-label-sm text-label-sm text-outline font-medium">
-                {{ $branding['system_name'] ?? 'GuidancePulse' }} Version 2.0 &bull; A.Y. {{ $academicYear }}
+                {{ $branding['system_name'] ?? 'TPC EntryPoint' }} Version 2.0 &bull; A.Y. {{ $academicYear }}
             </p>
             <p class="font-label-sm text-label-sm text-outline mt-xs">
                 &copy; {{ date('Y') }} {{ $branding['school_name'] ?? 'School' }}. All rights reserved.

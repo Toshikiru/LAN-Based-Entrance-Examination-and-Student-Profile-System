@@ -28,7 +28,7 @@
         <x-ui.stat-card icon="task_alt" label="Completed Exams" value="{{ number_format($stats['completed_exams']) }}" variant="neutral" />
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg items-start">
         {{-- Main Column --}}
         <div class="lg:col-span-2 space-y-xl">
             {{-- Live Examination Sessions --}}

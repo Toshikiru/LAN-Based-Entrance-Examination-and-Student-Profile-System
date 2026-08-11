@@ -234,7 +234,7 @@ class ExamResultController extends Controller
             $query->whereHas('result', fn ($q) => $q->where('passed', $passed));
         }
 
-        $query->orderBy('users.name');
+        $query->orderByDesc('exam_sessions.submitted_at');
 
         return $paginate
             ? $query->paginate(15)->withQueryString()
