@@ -1,4 +1,4 @@
-# TPC EntryPoint (GuidancePulse)
+# TPC EntryPoint
 
 A LAN-based Entrance Examination and Student Profile Management System built for **Talibon Polytechnic College's Guidance Office**, developed as a capstone project on **Laravel 12**.
 
